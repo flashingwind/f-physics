@@ -1083,8 +1083,15 @@ $$
 そこで前述の数学的推論によって、また解$e^{i\alpha_1 t}$および$e^{i\alpha_2 t}$が得られて、これを$\alpha_1$に代入すると、
 
 $$
-x_1=A\exp\left\{{-\left( \frac{\gamma}{2}+\sqrt{ \frac{\gamma^2}{4}-{\omega_0}^2 } \right)t}\right\},\\\\
-x_2=B\exp\left\{{-\left( \frac{\gamma}{2}-\sqrt{ \frac{\gamma^2}{4}-{\omega_0}^2 } \right)t}\right\}
+x_1=A\exp\left{
+  {-\left( \frac{\gamma}{2}
+    +\sqrt{ \frac{\gamma^2}{4}-{\omega_0}^2 } \right)t}
+\right},\\
+\\
+x_2=B\exp\left{
+  {-\left( \frac{\gamma}{2}
+    -\sqrt{ \frac{\gamma^2}{4}-{\omega_0}^2 } \right)t}
+\right}
 $$
 
 $\{\cdots\}$の内部は常に正であり、これは振動のないきれいな指数関数的減衰になる。
