@@ -6,21 +6,24 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: ファインマン物理学ノート
+title: ファインマン物理学学習ノート
 email: flashingwind@gmail.com
 description: > # ファインマン物理学の読書ノート。およびそれに関連するトピックについて。
 baseurl: "/feynmanlectures" # the subpath of your site, e.g. /blog
-url: "http://flashingwind.github.io/" # the base hostname & protocol for your site
+url: "http://f-physics.github.io/" # the base hostname & protocol for your site
 twitter_username: FLASH1N
 github_username:  flashingwind
 
 defaults:
-  -
-    scope:
+  - scope:
       path: "" # an empty string here means all files in the project
       type: "posts" # previously `post` in Jekyll 2.2.
     values:
       layout: "default"
+  - scope:
+      path: "assets/img"
+    values:
+      image: true
 
 # Build settings
 markdown: kramdown
