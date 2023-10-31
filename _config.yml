@@ -9,10 +9,11 @@
 title: ファインマン物理学学習ノート
 email: flashingwind@gmail.com
 description: > # ファインマン物理学の読書ノート。およびそれに関連するトピックについて。
-baseurl: "/feynmanlectures" # the subpath of your site, e.g. /blog
-url: "http://f-physics.github.io/" # the base hostname & protocol for your site
+baseurl: "/f-physics" # the subpath of your site, e.g. /blog
+url: "https://flashingwind.github.io/" # the base hostname & protocol for your site
 twitter_username: FLASH1N
 github_username:  flashingwind
+repository: flashingwind/f-physics
 
 defaults:
   - scope:
@@ -29,6 +30,7 @@ defaults:
 markdown: kramdown
 kramdown:
   math_engine: mathjax
+
 
 excerpt_separator: <!--more-->
 
