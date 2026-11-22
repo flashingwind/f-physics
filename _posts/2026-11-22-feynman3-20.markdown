@@ -1,0 +1,165 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第20章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第20章 電流と電荷のあるばあいのマクスウェル方程式の解
+
+
+### 光と電磁波
+
+前章の自由空間の波は、光の正体が電磁波であることを示したが、波を**作る**には電荷と電流が要る。源がある場合のMaxwell方程式はポテンシャルで書くと扱いやすい。Lorenzゲージ$\nabla\cdot\mathbf{A}+\dfrac{1}{c^2}\dfrac{\partial\phi}{\partial t}=0$のもとで、
+
+$$
+\nabla^2\phi-\frac{1}{c^2}\frac{\partial^2\phi}{\partial t^2}=-\frac{\rho}{\epsilon_0},
+\qquad
+\nabla^2\mathbf{A}-\frac{1}{c^2}\frac{\partial^2\mathbf{A}}{\partial t^2}=-\mu_0\mathbf{j}
+$$
+
+という、源付きの波動方程式(非同次波動方程式)に帰着する。
+
+※この帰着の計算は前巻までの内容で、要点だけ補っておく(補足)。$\mathbf{E}=-\nabla\phi-\dfrac{\partial\mathbf{A}}{\partial t}$をGaussの法則$\nabla\cdot\mathbf{E}=\rho/\epsilon_0$に入れると$\nabla^2\phi+\dfrac{\partial}{\partial t}(\nabla\cdot\mathbf{A})=-\rho/\epsilon_0$となり、Lorenz条件で$\nabla\cdot\mathbf{A}$を$\phi$の時間微分に置き換えると$\phi$の式が出る。$\mathbf{A}$の式も同様に、$\nabla\times(\nabla\times\mathbf{A})$への恒等式の適用とLorenz条件から得られる。
+
+### 点源からの球面波
+
+源が原点に集中している場合、外側($r>0$)では同次方程式が成り立ち、前章の結果から解は
+
+$$
+\psi=\frac{f(t-r/c)}{r}
+$$
+
+の形である。関数$f$は源の時間変化そのもので、波は源の振る舞いを、遅れ時間$r/c$だけ遅れて、$1/r$の減衰付きで伝える。例えば源が時刻$t_0$に短いパルスを出せば、それは半径$c(t-t_0)$の薄い球殻として広がる。静電場($f$が定数)はこの極限に含まれ、Coulombの場$\propto 1/r$のポテンシャルを与える。
+
+原点での発散は欠陥ではなく、源の存在の表れである。実際、$\nabla^2(1/r)=-4\pi\delta^3(\mathbf{r})$であり、$1/r$という形そのものが点源に対応する。
+
+### マクスウェル方程式の一般解
+
+一般の電荷分布$\rho(\mathbf{r}',t)$と電流分布$\mathbf{j}(\mathbf{r}',t)$に対する解は、点源の解の重ね合わせで得られる。源の各点$\mathbf{r}'$からの寄与は、距離$R=|\mathbf{r}-\mathbf{r}'|$を進むのにかかる時間$R/c$だけ遅れて届くので、評価すべき源の時刻は$t-R/c$である。これが**遅延ポテンシャル**(retarded potentials)で、
+
+$$
+\phi(\mathbf{r},t)=\frac{1}{4\pi\epsilon_0}\int\frac{\rho\bigl(\mathbf{r}',\,t-|\mathbf{r}-\mathbf{r}'|/c\bigr)}{|\mathbf{r}-\mathbf{r}'|}\,d^3r',
+\qquad
+\mathbf{A}(\mathbf{r},t)=\frac{\mu_0}{4\pi}\int\frac{\mathbf{j}\bigl(\mathbf{r}',\,t-|\mathbf{r}-\mathbf{r}'|/c\bigr)}{|\mathbf{r}-\mathbf{r}'|}\,d^3r'
+$$
+
+と書ける。導出の筋道は次の通り。(1) 源を点源の集まりとみなす。(2) 各点源は、前節の球面波として、源の強さに比例し$1/R$で減衰し$R/c$だけ遅れた寄与を出す。(3) 方程式が線形だから、寄与をすべて足し合わせる。静的な場合は遅れが消えて、よく知られたCoulombポテンシャルとBiot–Savart型の積分に戻る。
+
+※上の積分が非同次波動方程式を満たすことの厳密な検証(Green関数による構成)は原典では結果の提示が中心である。骨格は、被積分関数が$R>0$では同次方程式を満たし、$R\to0$の近傍では静的な場合と同じ特異性を持って源の項を再現する、という2点の確認である(補足)。
+
+この解の意味は明確である。場は瞬時には伝わらず、すべての影響は速さ$c$で、因果的に遅れて届く。Maxwell方程式の解は(境界条件のもとで)この遅延解であり、時間を逆向きに伝わる先行解は、因果律の要請によって捨てられる。
+
+### 振動する双極子の場
+
+具体例として、原点で$\mathbf{p}(t)=p_0\cos\omega t\,\hat{\mathbf{z}}$と振動する電気双極子を考える。双極子は小さいので、遅延は全体に共通の$t-r/c$で近似でき(源の大きさ$\ll$波長という近似で、源内部の位置による遅れの差は位相のずれとして小さい)、ベクトルポテンシャルは電流の積分$\int\mathbf{j}\,d^3r'=\dot{\mathbf{p}}$から、
+
+$$
+\mathbf{A}(\mathbf{r},t)=\frac{\mu_0}{4\pi r}\,\dot{\mathbf{p}}\left(t-\frac{r}{c}\right)
+$$
+
+となる。遠方($r\gg$波長)では、場は$\mathbf{A}$の空間微分の中で遅延時間の微分から来る項が支配的になる。$\dfrac{\partial}{\partial r}\dot{\mathbf{p}}(t-r/c)=-\dfrac{1}{c}\ddot{\mathbf{p}}(t-r/c)$であり、$1/r$の微分から来る$1/r^2$の項は落とせる(遠方近似の根拠はこの大小比較である)。$\mathbf{B}=\nabla\times\mathbf{A}$を計算すると、
+
+$$
+\mathbf{B}\approx-\frac{\mu_0}{4\pi c r}\,\hat{\mathbf{r}}\times\ddot{\mathbf{p}}\left(t-\frac{r}{c}\right),
+\qquad
+|\mathbf{B}|=\frac{\mu_0|\ddot{\mathbf{p}}|\sin\theta}{4\pi c r}
+$$
+
+方向まで込めた遠方の輻射場は、局所的に平面波とみなした関係$\mathbf{E}=c\,\mathbf{B}\times\hat{\mathbf{r}}$を用いて、
+
+$$
+\mathbf{E}_{\mathrm{rad}}=\frac{1}{4\pi\epsilon_0 c^2 r}\,
+\hat{\mathbf{r}}\times\left(\hat{\mathbf{r}}\times\ddot{\mathbf{p}}\left(t-\frac{r}{c}\right)\right),
+\qquad \text{すなわち大きさ}\ 
+|\mathbf{E}_{\mathrm{rad}}|=\frac{|\ddot{\mathbf{p}}|\sin\theta}{4\pi\epsilon_0 c^2 r}
+$$
+
+$\theta$は双極子の軸と観測方向のなす角である。場は$1/r$で減衰し、軸方向($\theta=0$)では消え、軸に垂直な方向で最大になる。放射の角分布はPoyntingベクトルの時間平均から、
+
+$$
+\frac{dP}{d\Omega}=\frac{|\ddot{\mathbf{p}}|^2}{16\pi^2\epsilon_0 c^3}\sin^2\theta
+$$
+
+全立体角で積分すると、$\int\sin^2\theta\,d\Omega=2\pi\int_0^\pi\sin^3\theta\,d\theta=\dfrac{8\pi}{3}$だから、
+
+$$
+P=\frac{|\ddot{\mathbf{p}}|^2}{6\pi\epsilon_0 c^3}
+$$
+
+双極子モーメントの2階微分は電荷の加速度に比例するので、これは加速する電荷がエネルギーを放射すること(Larmorの公式の双極子版)を表す。近傍($r\ll$波長)では$1/r^3$の静的な双極子場に遅延の補正が付いた形が支配的で、輻射場とは別に扱う。
+
+### 運動する電荷のポテンシャル；リエナール‐ウィーヘルトの一般解
+
+点電荷$q$が任意の軌道$\mathbf{r}_q(t')$を運動する場合に、遅延ポテンシャルを評価する。電荷密度は$\rho(\mathbf{r}',t')=q\,\delta^3\bigl(\mathbf{r}'-\mathbf{r}_q(t')\bigr)$である。$\phi$の積分に代入すると空間積分はデルタ関数で消え、残るのは遅延条件を決める時間積分である。観測点$\mathbf{r}$、時刻$t$に対して、寄与できるのは
+
+$$
+t'=t-\frac{|\mathbf{r}-\mathbf{r}_q(t')|}{c}\equiv t_{\mathrm{ret}}
+$$
+
+を満たす時刻$t_{\mathrm{ret}}$に電荷がいた位置からの信号だけである。この条件は$t'$についての陰関数方程式で、解$t_{\mathrm{ret}}$が**遅延時刻**である。
+
+ここで安易に「$\rho$を$1/R$倍して終わり」とはいかない。電荷が観測点に近づきながら信号を出すと、信号の到着間隔は圧縮され、実効的な電荷密度が増えて見えるからである。計算すると、その圧縮因子が分母に現れる。デルタ関数の合成関数の公式を使う。$g(t')=t'+\dfrac{R(t')}{c}-t$($R(t')=|\mathbf{r}-\mathbf{r}_q(t')|$)と置くと、遅延条件は$g(t')=0$で、
+
+$$
+g'(t')=1+\frac{1}{c}\frac{dR}{dt'}
+=1-\frac{\hat{\mathbf{R}}\cdot\mathbf{v}}{c}
+$$
+
+ただし$\dfrac{dR}{dt'}=-\hat{\mathbf{R}}\cdot\mathbf{v}$であることを使った($\mathbf{R}=\mathbf{r}-\mathbf{r}_q$、電荷が観測点へ近づくとき$R$は減る)。$\delta\bigl(g(t')\bigr)=\dfrac{\delta(t'-t_{\mathrm{ret}})}{|g'(t_{\mathrm{ret}})|}$だから、時間積分を実行して、
+
+$$
+\phi(\mathbf{r},t)=\frac{1}{4\pi\epsilon_0}\,
+\frac{q}{\left[R-\dfrac{\mathbf{R}\cdot\mathbf{v}}{c}\right]_{\mathrm{ret}}},
+\qquad
+\mathbf{A}(\mathbf{r},t)=\frac{\mathbf{v}}{c^2}\,\phi(\mathbf{r},t)\ \text{(遅延時刻で評価)}
+$$
+
+これが**リエナール-ヴィーヘルトポテンシャル**(Liénard–Wiechert potentials)である。分母の補正項$-\mathbf{R}\cdot\mathbf{v}/c$が上の圧縮効果で、電荷が観測点に近づく($\mathbf{R}\cdot\mathbf{v}>0$)とき分母は小さく、ポテンシャルは大きくなる。$\mathbf{A}$が$\phi$に$\mathbf{v}/c^2$を掛けたものになるのは、電流が$\mathbf{j}=\rho\mathbf{v}$であることから直接出る。
+
+### 一定の速度で運動する点電荷のポテンシャル；ローレンツの公式
+
+場は$\mathbf{E}=-\nabla\phi-\dfrac{\partial\mathbf{A}}{\partial t}$、$\mathbf{B}=\nabla\times\mathbf{A}$で得られるが、微分は遅延時刻$t_{\mathrm{ret}}$が$\mathbf{r}$と$t$の両方に依存することを通じて効くので、まずその微分を求める。遅延条件$t=t_{\mathrm{ret}}+\dfrac{R(t_{\mathrm{ret}})}{c}$の両辺を$t$で微分すると、
+
+$$
+1=\frac{\partial t_{\mathrm{ret}}}{\partial t}\left(1-\frac{\hat{\mathbf{R}}\cdot\mathbf{v}}{c}\right)
+\quad\Longrightarrow\quad
+\frac{\partial t_{\mathrm{ret}}}{\partial t}=\frac{1}{\kappa},
+\qquad
+\kappa\equiv 1-\frac{\hat{\mathbf{R}}\cdot\mathbf{v}}{c}
+$$
+
+同様に$\nabla$を取ると、$\nabla R=\hat{\mathbf{R}}$に注意して、
+
+$$
+0=\nabla t_{\mathrm{ret}}+\frac{1}{c}\left(\hat{\mathbf{R}}-\mathbf{v}\,\nabla t_{\mathrm{ret}}\cdot\frac{\mathbf{v}}{|\mathbf{v}|}\right)\ \text{を整理して}\quad
+\nabla t_{\mathrm{ret}}=-\frac{\hat{\mathbf{R}}}{c\kappa}
+$$
+
+(中間の整理では、$\nabla R(t_{\mathrm{ret}})=\hat{\mathbf{R}}-\mathbf{v}(\nabla t_{\mathrm{ret}})$の形、すなわち$R$は$t_{\mathrm{ret}}$経由でも変わることを使う。)これらを用いて$\phi$、$\mathbf{A}$を微分し、$\dot{\mathbf{v}}=\mathbf{a}$の項まで残すと、場は次の形になる。$\boldsymbol{\beta}=\mathbf{v}/c$、$\hat{\mathbf{n}}=\hat{\mathbf{R}}$として、
+
+$$
+\mathbf{E}=\frac{q}{4\pi\epsilon_0}\left[
+\frac{(\hat{\mathbf{n}}-\boldsymbol{\beta})(1-\beta^2)}{\kappa^3 R^2}
++\frac{\hat{\mathbf{n}}\times\bigl\{(\hat{\mathbf{n}}-\boldsymbol{\beta})\times\dot{\boldsymbol{\beta}}\bigr\}}{c\,\kappa^3 R}
+\right]_{\mathrm{ret}},
+\qquad
+\mathbf{B}=\frac{\hat{\mathbf{n}}\times\mathbf{E}}{c}\ \text{(遅延位置で)}
+$$
+
+第1項は**速度場**で、加速度がなくても存在し、$1/R^2$で減衰して電荷に付随して運ばれる。第2項は**加速度場(輻射場)**で、加速度$\dot{\boldsymbol{\beta}}=\mathbf{a}/c$に比例し、$1/R$で減衰するので遠方までエネルギーを運ぶ。第20章の双極子輻射は、この第2項を非相対論的・遠方で評価したものにほかならない。
+
+特殊な場合として**等速運動**($\mathbf{a}=0$)では輻射項は消え、速度場だけが残る。遅延位置で表された式を、現在の位置からのベクトル$\mathbf{R}_{\mathrm{now}}$で書き直すと(遅延位置と現在位置の関係$R_{\mathrm{ret}}$と角度の換算を経て)、
+
+$$
+\mathbf{E}=\frac{q}{4\pi\epsilon_0}\,
+\frac{(1-\beta^2)\,\mathbf{R}_{\mathrm{now}}}
+{R_{\mathrm{now}}^3\left(1-\beta^2\sin^2\theta\right)^{3/2}},
+\qquad
+\mathbf{B}=\frac{\mathbf{v}\times\mathbf{E}}{c^2}
+$$
+
+となる。$\theta$は$\mathbf{v}$と$\mathbf{R}_{\mathrm{now}}$のなす角である。場は現在の位置を向き(遅れた位置ではない)、運動方向には弱く($\theta=0$で$1-\beta^2$倍)、垂直方向には強く($\theta=\pi/2$で$\gamma$倍)なる。つまり等速電荷の場は、運動方向に$\gamma$分の1に潰れた「パンケーキ」状に集中する。これは第20章までの波の議論と合わせ、電磁場の相対論的な振る舞いへの橋渡しになる。
+
+※等速の場合の換算($\kappa R$と現在位置の距離の関係付け)の計算の細部は原典でも概略が中心である。鍵は、遅延時刻における幾何と現在時刻における幾何を、電荷がその間に$\mathbf{v}(t-t_{\mathrm{ret}})$だけ進んだことで結び付ける点にある(補足)。

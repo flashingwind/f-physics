@@ -1,0 +1,194 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第18章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第18章 マクスウェル方程式
+
+
+### マクスウェル方程式
+
+これまで部分ごとに学んできた法則に最後の1項を加え、全体を1つにまとめる。**Maxwellの方程式**(真空中、原典の記法)は次の4式である。
+
+$$
+\text{I.}\quad \nabla\cdot\mathbf{E}=\frac{\rho}{\epsilon_0}
+$$
+
+$$
+\text{II.}\quad \nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t}
+$$
+
+$$
+\text{III.}\quad \nabla\cdot\mathbf{B}=0
+$$
+
+$$
+\text{IV.}\quad c^2\nabla\times\mathbf{B}=\frac{\mathbf{j}}{\epsilon_0}+\frac{\partial\mathbf{E}}{\partial t}
+$$
+
+IはGaussの法則(閉曲面を出る$\mathbf{E}$の磁束ではなく電束が内部の電荷$/\epsilon_0$に等しい)、IIIは磁気についての対応物で、磁気単極子がないため常に0である。IIはFaradayの法則で、前2章の内容である。新しいのはIVの右辺第2項$\partial\mathbf{E}/\partial t$、すなわち**変位電流**の項である。
+
+なぜこの項が必要か、導出を追う。もとのAmpèreの法則は定常電流について
+
+$$
+\nabla\times\mathbf{B}=\frac{\mathbf{j}}{\epsilon_0c^2}
+$$
+
+と知られていた。両辺の発散を取ると、回転の発散は恒等的に0だから、左辺は0になる。したがって右辺から
+
+$$
+\nabla\cdot\mathbf{j}=0
+$$
+
+が要請される。ところが電荷保存の法則は
+
+$$
+\nabla\cdot\mathbf{j}=-\frac{\partial\rho}{\partial t}
+$$
+
+であり、電荷が蓄積する状況(例えばコンデンサの充電)では$\partial\rho/\partial t\neq0$だから、もとの法則は一般には**矛盾**する。Maxwellは、右辺に$\partial\mathbf{E}/\partial t$を加えれば矛盾が解けると考えた。新しい式
+
+$$
+c^2\nabla\times\mathbf{B}=\frac{\mathbf{j}}{\epsilon_0}+\frac{\partial\mathbf{E}}{\partial t}
+$$
+
+の両辺の発散を取ると、左辺はやはり0で、右辺は
+
+$$
+\frac{1}{\epsilon_0}\nabla\cdot\mathbf{j}+\frac{\partial}{\partial t}(\nabla\cdot\mathbf{E})=0
+$$
+
+となる。ここで式I、$\nabla\cdot\mathbf{E}=\rho/\epsilon_0$を代入すると第2項は$\dfrac{1}{\epsilon_0}\dfrac{\partial\rho}{\partial t}$となり、全体を$\epsilon_0$倍すれば
+
+$$
+\nabla\cdot\mathbf{j}+\frac{\partial\rho}{\partial t}=0
+$$
+
+すなわち電荷保存の法則そのものになる。変位電流の項は、方程式の体系を電荷保存と両立させるために正確に必要な大きさで入っているのである。
+
+これに電荷保存、力の法則$\mathbf{F}=q(\mathbf{E}+\mathbf{v}\times\mathbf{B})$、相対論的に修正したNewtonの運動法則、重力の法則を合わせたものが、原典の表18-1にまとめられた**古典物理学の全体**である。
+
+### 新しい項の効果
+
+充電中のコンデンサで新しい項の働きを見る。極板間に導線はなく$\mathbf{j}=0$だが、極板の電荷が増えるので極板間の電場$\mathbf{E}$は時間変化する。極板の面積を$A$、電荷を$Q$とすると、極板間の電場は$E=Q/\epsilon_0A$だから、
+
+$$
+\epsilon_0\frac{\partial E}{\partial t}=\epsilon_0\cdot\frac{1}{\epsilon_0A}\frac{dQ}{dt}=\frac{1}{A}\frac{dQ}{dt}=\frac{I}{A}
+$$
+
+ここで$dQ/dt=I$は導線を流れて極板に流れ込む電流である。つまり極板間では$\epsilon_0\,\partial\mathbf{E}/\partial t$が、導線の中の電流密度$\mathbf{j}$と正確に同じ大きさの「電流」として振る舞い、磁場の源としては切れ目がない。式IVを積分形で使えば、導線を囲む閉曲線についても、極板間を通る面についても、同じ$\oint\mathbf{B}\cdot d\mathbf{s}$が得られる。面の取り方によらず答えが一致するのは、変位電流の項があるおかげである。
+
+もう1つの帰結は、電流も電荷もない真空中でも場が存在できることである。$\rho=0$、$\mathbf{j}=0$の領域では方程式は
+
+$$
+\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t},\qquad c^2\nabla\times\mathbf{B}=\frac{\partial\mathbf{E}}{\partial t}
+$$
+
+となる。$\mathbf{B}$が消えようとすれば$\partial\mathbf{B}/\partial t$が$\mathbf{E}$を作り、$\mathbf{E}$が消えようとすれば$\partial\mathbf{E}/\partial t$が$\mathbf{B}$を作り直す。2つの場は互いを作り合って自己維持できる。これが次節の「旅する場」である。
+
+※エネルギー保存との関係は原典では後の章(第27章)で扱われるが、変位電流を含む方程式から直接導けるので補っておく(補足)。式IIに$\mathbf{B}$との内積、式IVに$\mathbf{E}$との内積を取り、引くと、ベクトル解析の恒等式$\nabla\cdot(\mathbf{E}\times\mathbf{B})=\mathbf{B}\cdot(\nabla\times\mathbf{E})-\mathbf{E}\cdot(\nabla\times\mathbf{B})$を使って、
+
+$$
+\mathbf{B}\cdot\left(-\frac{\partial\mathbf{B}}{\partial t}\right)-\mathbf{E}\cdot\left(\frac{1}{c^2}\frac{\partial\mathbf{E}}{\partial t}+\frac{\mathbf{j}}{\epsilon_0c^2}\right)=\nabla\cdot(\mathbf{E}\times\mathbf{B})
+$$
+
+左辺第1項は$-\dfrac{1}{2}\dfrac{\partial B^2}{\partial t}$、第2項の括弧内第1項は$\dfrac{1}{2c^2}\dfrac{\partial E^2}{\partial t}$だから、両辺に$-\epsilon_0c^2$を掛けて整理すると、
+
+$$
+\frac{\partial}{\partial t}\left[\frac{\epsilon_0}{2}\left(E^2+c^2B^2\right)\right]+\nabla\cdot\left(\epsilon_0c^2\,\mathbf{E}\times\mathbf{B}\right)=-\mathbf{j}\cdot\mathbf{E}
+$$
+
+が得られる。第1項の括弧内が場のエネルギー密度$u$、第2項の括弧内が**Poyntingベクトル**$\mathbf{S}=\epsilon_0c^2\,\mathbf{E}\times\mathbf{B}=\dfrac{1}{\mu_0}\mathbf{E}\times\mathbf{B}$(単位面積を単位時間に流れるエネルギー)、右辺は場が電荷にする仕事率である。エネルギー保存はMaxwellの方程式の帰結として出てくる。
+
+### 古典物理のすべて
+
+表18-1の内容は、Maxwellの方程式、電荷保存、力の法則、運動法則、重力で尽きている。19世紀の終わりまでに知られた古典物理学はこの1枚の表に収まる。原典は、この表が完全であること、しかし電子の自己エネルギー(自分自身の場から自分が受ける力)など、古典論の内部で未解決の問題が残ることも注意する。量子力学が必要になるのはその先である。
+
+### 進行する場
+
+新しい項の働きを、最も簡単な設定で最後まで追う。無限に広い平面状の電流シートが、時刻$t=0$に突然電流を流し始める場合を考える。電流の向きを$y$方向、シートを$yz$平面とする。対称性から、電場は$y$方向、磁場は$z$方向を向き、大きさは$x$と$t$だけによる。
+
+波面は光速で進む。電流が流れ始めてから時間$T$の後、場が届いているのは$|x|<cT$の範囲だけで、その外はまだ場が0である。場の「塊」は厚さ$cT$の板としてシートを離れていく。
+
+塊の内部で$\mathbf{E}$と$\mathbf{B}$の大きさの関係を、積分形の方程式から出す。波面をまたぐ細長い長方形の回路(1辺が$y$方向に長さ$L$、もう1辺が$x$方向)にFaradayの法則を適用する。波面が回路を通過する短い時間に、回路を貫く$\mathbf{B}$の磁束は$BL\cdot(c\,\Delta t)$だけ増える(波面が速さ$c$で進んで磁場のある面積が広がるため)。一方、$\oint\mathbf{E}\cdot d\mathbf{s}$は、電場のある側の辺の寄与$EL$に等しい。したがって
+
+$$
+EL=BL\cdot c\quad\text{すなわち}\quad E=cB
+$$
+
+次に、同じ形の回路を$\mathbf{B}$の向きを含む面内に取り、式IV(真空中なので$\mathbf{j}=0$の場所で)を適用する。回路の1辺だけに$\mathbf{B}$があるので$\oint\mathbf{B}\cdot d\mathbf{s}=BL$であり、回路を貫く$\mathbf{E}$の束は波面の通過とともに割合$EL\cdot c$で増える。式IVの積分形$c^2\oint\mathbf{B}\cdot d\mathbf{s}=d\Phi_E/dt$に代入すると、
+
+$$
+c^2 BL=ELc\quad\text{すなわち}\quad E=cB
+$$
+
+と同じ関係が再び出る。2つの方程式が同じ関係$E=cB$を要求するからこそ、場の塊は形を保って進むことができる。どちらか一方の法則だけでは塊は維持できない。
+
+電流を突然止めれば、その後に流れ始めた分の塊だけが、厚さ$cT$の独立した板となって永遠に進み続ける。原典の言葉では、毛虫が蝶になったのである。場は源から切り離されても、Faradayの法則と新しい項の組み合わせによって自己維持しながら空間を伝わる。これが**電磁波**の最も素朴な姿である。
+
+### 光の速さ
+
+方程式の中の$c$は、もともと電気的な力と磁気的な力の比から決まる定数で、静電気の実験と電流の磁気作用の実験を組み合わせれば測れる量である。その値は光の速さの測定値と一致した。これが、光は電磁波であるというMaxwellの結論の根拠である。$c$は、$\epsilon_0$を用いて$c=1/\sqrt{\epsilon_0\mu_0}$とも書ける($\mu_0=1/\epsilon_0c^2$の定義から直ちに従う)。
+
+### マクスウェル方程式を解くこと；ポテンシャルと波動方程式
+
+場を直接解く代わりに、**ポテンシャル**で表すと方程式が整理される。まず式III、$\nabla\cdot\mathbf{B}=0$から従うこととして、$\mathbf{B}$はあるベクトル$\mathbf{A}$の回転で書ける。
+
+$$
+\mathbf{B}=\nabla\times\mathbf{A}
+$$
+
+なぜなら回転の発散は恒等的に0で、式IIIと矛盾しないからである。$\mathbf{A}$を**ベクトルポテンシャル**という。次にFaradayの法則に代入すると、
+
+$$
+\nabla\times\mathbf{E}=-\frac{\partial}{\partial t}(\nabla\times\mathbf{A})=-\nabla\times\frac{\partial\mathbf{A}}{\partial t}
+$$
+
+移項して、
+
+$$
+\nabla\times\left(\mathbf{E}+\frac{\partial\mathbf{A}}{\partial t}\right)=0
+$$
+
+回転が0のベクトル場はスカラーの勾配で書けるので、スカラーポテンシャル$\phi$を用いて
+
+$$
+\mathbf{E}+\frac{\partial\mathbf{A}}{\partial t}=-\nabla\phi\quad\text{すなわち}\quad \mathbf{E}=-\nabla\phi-\frac{\partial\mathbf{A}}{\partial t}
+$$
+
+と置ける。静電場の$\mathbf{E}=-\nabla\phi$は、$\partial\mathbf{A}/\partial t=0$の場合として含まれている。
+
+残りの2式(式Iと式IV)にこれらを代入する。式Iは、
+
+$$
+\nabla\cdot\left(-\nabla\phi-\frac{\partial\mathbf{A}}{\partial t}\right)=\frac{\rho}{\epsilon_0}\quad\text{すなわち}\quad -\nabla^2\phi-\frac{\partial}{\partial t}(\nabla\cdot\mathbf{A})=\frac{\rho}{\epsilon_0}
+$$
+
+式IVは、$\nabla\times\mathbf{B}=\nabla\times(\nabla\times\mathbf{A})=\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A}$という恒等式を使って、
+
+$$
+c^2\left[\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A}\right]=\frac{\mathbf{j}}{\epsilon_0}+\frac{\partial}{\partial t}\left(-\nabla\phi-\frac{\partial\mathbf{A}}{\partial t}\right)
+$$
+
+となる。ポテンシャルには任意性がある。$\mathbf{A}$に任意の関数の勾配を加え、$\phi$からその時間微分を引いても、$\mathbf{E}$と$\mathbf{B}$は変わらない(**ゲージの自由度**)。この任意性を使って、
+
+$$
+\nabla\cdot\mathbf{A}+\frac{1}{c^2}\frac{\partial\phi}{\partial t}=0\qquad\text{(Lorenz条件)}
+$$
+
+が成り立つようにポテンシャルを選ぶ。すると式Iの左辺第2項は、$\nabla\cdot\mathbf{A}=-\dfrac{1}{c^2}\dfrac{\partial\phi}{\partial t}$を代入して、
+
+$$
+-\nabla^2\phi-\frac{\partial}{\partial t}\left(-\frac{1}{c^2}\frac{\partial\phi}{\partial t}\right)=\frac{\rho}{\epsilon_0}\quad\text{すなわち}\quad \nabla^2\phi-\frac{1}{c^2}\frac{\partial^2\phi}{\partial t^2}=-\frac{\rho}{\epsilon_0}
+$$
+
+式IVも、$\nabla(\nabla\cdot\mathbf{A})$の項にLorenz条件を代入すると$\nabla\phi$の項と打ち消し合い、
+
+$$
+\nabla^2\mathbf{A}-\frac{1}{c^2}\frac{\partial^2\mathbf{A}}{\partial t^2}=-\frac{\mathbf{j}}{\epsilon_0c^2}
+$$
+
+が得られる。どちらの方程式も、左辺は**波動方程式**の演算子$\nabla^2-\dfrac{1}{c^2}\dfrac{\partial^2}{\partial t^2}$で、右辺は源である。電荷と電流が与えられればポテンシャルが決まり、ポテンシャルから場が決まる。真空中($\rho=0$、$\mathbf{j}=0$)では$\phi$も$\mathbf{A}$も、したがって$\mathbf{E}$も$\mathbf{B}$も、速さ$c$で伝わる波動方程式に従う。これが第18章の到達点で、解の具体的な形は第20章・第21章へ続く。

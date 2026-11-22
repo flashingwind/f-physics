@@ -1,0 +1,209 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第10章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第10章 誘電体
+
+
+### 誘電率
+
+絶縁体を平行平板コンデンサの極板の間に挟むと、同じ自由電荷に対して電圧が下がり、容量が増える。真空のときの容量を$C_0$、電場を$\mathbf{E}_0$、電圧を$V_0$として、誘電体を入れたとき
+
+$$
+C=\kappa C_0,\qquad \mathbf{E}=\frac{\mathbf{E}_0}{\kappa},\qquad V=\frac{V_0}{\kappa}
+$$
+
+となる無次元の定数$\kappa$を**誘電率**(dielectric constant、比誘電率)という。極板の自由電荷の面密度を$\sigma_{\mathrm{free}}$とすると、真空ではGaussの法則から$E_0=\sigma_{\mathrm{free}}/\epsilon_0$である。誘電体を入れても極板上の自由電荷が変わらなければ、
+
+$$
+E=\frac{\sigma_{\mathrm{free}}}{\kappa\epsilon_0}
+$$
+
+でなければならない。つまり誘電体の中の電場は、極板の自由電荷だけから作られる場より弱い。差し引きを担うのが、次節以下で見る誘電体自身の表面に現れる**分極電荷**である。誘電体表面の分極電荷が逆向きの場を作り、全体を$1/\kappa$に下げる。
+
+$\kappa$は物質と温度・振動数に依存する定数で、真空で$1$、気体では$1$に近く(空気で約$1.0005$)、水では約$80$と大きい。この章の課題は、$\kappa$という巨視的な数を、原子・分子の分極という微視的な描像と、静電場の方程式の言葉で書き直すことである。
+
+### 分極ベクトル $\mathbf{P}$
+
+誘電体に電場がかかると、各原子・分子の中で正電荷と負電荷の中心がわずかにずれ、小さな双極子ができる。単位体積あたりの双極子モーメントの合計を**分極ベクトル**$\mathbf{P}$という。単位体積中に$N$個の分子があり、各分子の平均の双極子モーメントが$\mathbf{p}_{\mathrm{mol}}$なら、定義そのままに
+
+$$
+\mathbf{P}=N\mathbf{p}_{\mathrm{mol}}
+$$
+
+である。$\mathbf{p}_{\mathrm{mol}}$が電場に比例する通常の場合、$\mathbf{P}$も$\mathbf{E}$に比例する。
+
+まず一様に分極した平板で、$\mathbf{P}$と表面電荷の関係を導く。平板の厚さを$d$、面積を$A$、$\mathbf{P}$は面に垂直とする。分極とは、正電荷全体が負電荷全体に対して$\mathbf{P}$の向きに距離$\delta$だけずれたことだとみなせる。体積$Ad$の中の正電荷の総量を$Q$とすると、双極子モーメントの合計は$Q\delta$、単位体積あたりでは
+
+$$
+P=\frac{Q\delta}{Ad}
+$$
+
+である。一方、ずれによって一方の表面にはみ出す正電荷は、厚さ$\delta$の層の中にあった電荷である。体積電荷密度は$Q/(Ad)$だから、はみ出した電荷は単位面積あたり$(Q/Ad)\delta$であり、
+
+$$
+\sigma_{\mathrm{pol}}=\frac{Q\delta}{Ad}=P
+$$
+
+となる。符号まで込めた一般の形は、表面の外向き法線を$\hat{\mathbf{n}}$として
+
+$$
+\sigma_{\mathrm{pol}}=\mathbf{P}\cdot\hat{\mathbf{n}}
+$$
+
+である。$\mathbf{P}$が外を向く面には正の、内を向く面には負の分極電荷が現れる。これが**分極電荷**(束縛電荷)で、極板上の自由電荷と違って誘電体の表面から離れて動くことはできない。
+
+平板コンデンサに戻ると、この$\sigma_{\mathrm{pol}}=P$が作る場は平板電荷の場と同じ形で$E_{\mathrm{pol}}=\sigma_{\mathrm{pol}}/\epsilon_0=P/\epsilon_0$、向きは外場と逆である。したがって誘電体内の場は
+
+$$
+E=E_0-\frac{P}{\epsilon_0}=\frac{\sigma_{\mathrm{free}}}{\epsilon_0}-\frac{P}{\epsilon_0}
+$$
+
+と書ける。これと$E=E_0/\kappa=\sigma_{\mathrm{free}}/(\kappa\epsilon_0)$を比べると、$\sigma_{\mathrm{free}}$を消去して
+
+$$
+\frac{\sigma_{\mathrm{free}}}{\kappa\epsilon_0}=\frac{\sigma_{\mathrm{free}}-P}{\epsilon_0}
+\quad\Longrightarrow\quad
+P=\sigma_{\mathrm{free}}\left(1-\frac{1}{\kappa}\right)
+$$
+
+さらに$E=\sigma_{\mathrm{free}}/(\kappa\epsilon_0)$で$\sigma_{\mathrm{free}}=\kappa\epsilon_0 E$と書いて代入すると、
+
+$$
+P=\kappa\epsilon_0 E\left(1-\frac{1}{\kappa}\right)=\epsilon_0(\kappa-1)E
+$$
+
+すなわち
+
+$$
+\mathbf{P}=\epsilon_0(\kappa-1)\mathbf{E}
+$$
+
+が得られる。$\kappa-1$を電気感受率$\chi_e$と呼ぶこともある。$\kappa$が大きい物質ほど、同じ場に対して大きく分極する。
+
+### 分極電荷
+
+$\mathbf{P}$が一様でない場合、分極電荷は表面だけでなく内部にも現れる。これを展開して導く。考えている体積$V$の内部に残る分極電荷は、分極による電荷の移動のうち、境界面を横切って外へ出た分だけ減る。面要素$d\mathbf{a}$を通って外へ出る電荷は、その面での$\mathbf{P}$の法線成分に等しい。なぜなら、上の平板の議論を面要素に局所的に適用すれば、単位面積あたり$\mathbf{P}\cdot\hat{\mathbf{n}}$の電荷が面を横切るからである。したがって体積$V$の中に残る分極電荷の総量$Q_{\mathrm{pol}}$は、外へ出た分に負号を付けて
+
+$$
+Q_{\mathrm{pol}}=-\oint_S \mathbf{P}\cdot d\mathbf{a}
+$$
+
+である。右辺に発散定理を使うと
+
+$$
+Q_{\mathrm{pol}}=-\int_V \nabla\cdot\mathbf{P}\,dV
+$$
+
+となる。一方、$Q_{\mathrm{pol}}$を体積分極電荷密度$\rho_{\mathrm{pol}}$で書けば$Q_{\mathrm{pol}}=\int_V\rho_{\mathrm{pol}}\,dV$だから、任意の$V$について2つの積分が等しいことから被積分関数が等しく、
+
+$$
+\rho_{\mathrm{pol}}=-\nabla\cdot\mathbf{P}
+$$
+
+が得られる。$\mathbf{P}$が一様なら$\nabla\cdot\mathbf{P}=0$で内部に分極電荷はなく、電荷は表面にだけ現れることとつじつまが合う。$\mathbf{P}$の湧き出しがある場所では、正電荷がその分だけ外へ逃げたので内部は負に帯電する、という符号である。
+
+例として、一様に分極した球を考える。表面では$\hat{\mathbf{n}}$が動径方向だから、極角$\theta$を$\mathbf{P}$の向きから測って
+
+$$
+\sigma_{\mathrm{pol}}=\mathbf{P}\cdot\hat{\mathbf{n}}=P\cos\theta
+$$
+
+となる。この表面電荷が作る球内の場は一様で、大きさ$P/(3\epsilon_0)$、向きは$\mathbf{P}$と逆になる(導出は第11章の空洞のところで、ずらした2つの帯電球の重ね合わせとして丁寧に追う)。球の外では、この電荷分布は球の中心に双極子モーメント$(4\pi R^3/3)\mathbf{P}$を置いたものと同じ場を作る。体積に$\mathbf{P}$を掛けたものが全体の双極子モーメントであることと一致する。
+
+### 誘電体のある場合の静電方程式
+
+真空中のGaussの法則は、自由電荷と分極電荷の両方を含む全電荷に対して成り立つ。
+
+$$
+\nabla\cdot\mathbf{E}=\frac{\rho_{\mathrm{free}}+\rho_{\mathrm{pol}}}{\epsilon_0}
+$$
+
+ここへ$\rho_{\mathrm{pol}}=-\nabla\cdot\mathbf{P}$を代入すると、
+
+$$
+\nabla\cdot\mathbf{E}=\frac{\rho_{\mathrm{free}}-\nabla\cdot\mathbf{P}}{\epsilon_0}
+$$
+
+$$
+\epsilon_0\nabla\cdot\mathbf{E}+\nabla\cdot\mathbf{P}=\rho_{\mathrm{free}}
+$$
+
+左辺は発散の和だから1つの発散にまとめられ、
+
+$$
+\nabla\cdot(\epsilon_0\mathbf{E}+\mathbf{P})=\rho_{\mathrm{free}}
+$$
+
+となる。ここで新しいベクトル
+
+$$
+\mathbf{D}=\epsilon_0\mathbf{E}+\mathbf{P}
+$$
+
+を定義し、**電束密度**と呼ぶ。方程式は
+
+$$
+\nabla\cdot\mathbf{D}=\rho_{\mathrm{free}}
+$$
+
+と、自由電荷だけを右辺に持つきれいな形になる。積分形は$\oint\mathbf{D}\cdot d\mathbf{a}=Q_{\mathrm{free}}(\text{内側})$である。$\mathbf{P}=\epsilon_0(\kappa-1)\mathbf{E}$を代入すれば、線形で一様な誘電体では
+
+$$
+\mathbf{D}=\epsilon_0\mathbf{E}+\epsilon_0(\kappa-1)\mathbf{E}=\kappa\epsilon_0\mathbf{E}
+$$
+
+となる。静電場のもう1つの方程式$\nabla\times\mathbf{E}=0$、すなわち$\mathbf{E}=-\nabla\phi$は、誘電体があってもそのまま成り立つ。$\mathbf{D}$の方は一般に回転が0ではないので、$\mathbf{D}$にはポテンシャルは対応しないことに注意する。
+
+境界条件も$\mathbf{D}$で書くと見通しがよい。境界面をまたぐ薄い円筒(Gaussのピルボックス)に$\oint\mathbf{D}\cdot d\mathbf{a}=Q_{\mathrm{free}}$を適用し、高さを0に潰すと、側面の寄与が消えて
+
+$$
+D_{2\perp}-D_{1\perp}=\sigma_{\mathrm{free}}
+$$
+
+が得られる。自由表面電荷がなければ$\mathbf{D}$の法線成分は連続である。一方、$\nabla\times\mathbf{E}=0$を境界面に沿う細長い長方形に適用すると、$\mathbf{E}$の接線成分は(自由電流がない静電場では)常に連続、
+
+$$
+E_{2\parallel}-E_{1\parallel}=0
+$$
+
+となる。
+
+応用の例は、一様な外場$\mathbf{E}_0$の中に置いた誘電率$\kappa$の球である。境界条件とLaplace方程式の解(第7章の導体系の球と同型の問題)を解くと、球内の場は一様で
+
+$$
+\mathbf{E}_{\mathrm{in}}=\frac{3}{\kappa+2}\mathbf{E}_0
+$$
+
+になる。
+
+※この結果は原典では既知の解の流用として短く置かれるので、対応を補っておく(補足)。導体球($\kappa\to\infty$に相当する等電位の条件)ではなく、法線成分については$\kappa\epsilon_0 E_{\mathrm{in}\perp}=\epsilon_0 E_{\mathrm{out}\perp}$、接線成分については$E_{\mathrm{in}\parallel}=E_{\mathrm{out}\parallel}$を課すことが効く。外のポテンシャルを$\phi_{\mathrm{out}}=-E_0 r\cos\theta+A\cos\theta/r^2$、内を$\phi_{\mathrm{in}}=-Br\cos\theta$と置き、$r=R$で$\phi$の連続と$\kappa\,\partial\phi_{\mathrm{in}}/\partial r=\partial\phi_{\mathrm{out}}/\partial r$を課すと、連立方程式$B=E_0-A/R^3$、$\kappa B=E_0+2A/R^3$から$A/R^3=(\kappa-1)E_0/(\kappa+2)$、$B=3E_0/(\kappa+2)$が出る。$\kappa=1$で$B=E_0$(球がない場合)、$\kappa\to\infty$で$B\to0$(導体内部)となる極限も正しい。
+
+### 誘電体のある場合の場と力
+
+誘電体は電場から力を受ける。コンデンサの極板の間に誘電体の板を途中まで差し込むと、板は中へ引き込まれる。端の部分では電場が一様でなく、極板の縁から漏れた場(フリンジ場)に水平成分があり、分極した板の表面電荷を内側へ引く、というのが力の微視的な出どころである。ただし力の大きさは、端の場を詳しく解かなくても、エネルギーから求められる。
+
+板が距離$x$だけ入った状態での容量を$C(x)$とする。電圧$V$を一定に保つ(電池につないだ)場合、蓄えられるエネルギーは$U=\tfrac{1}{2}C(x)V^2$である。板が$dx$だけ進むと容量が$dC$だけ増え、エネルギーの増加は
+
+$$
+dU=\frac{1}{2}V^2\,dC
+$$
+
+である。ところが電池は電荷を送り込む仕事もする。電荷の増加$dQ=V\,dC$に対して電池の仕事は$V\,dQ=V^2 dC$で、その半分が静電エネルギーになり、残りの半分が板を引く力の仕事$F\,dx$になる。したがって
+
+$$
+F\,dx=V^2\,dC-\frac{1}{2}V^2\,dC=\frac{1}{2}V^2\,dC,
+\qquad
+F=\frac{1}{2}V^2\frac{dC}{dx}
+$$
+
+が得られる。$dC/dx>0$(入るほど容量が増える)だから力は引き込む向きである。
+
+※原典は電池のする仕事の半分が力学的仕事になることを結果として述べるので、上の収支を補った(補足)。電圧一定ではなく電荷$Q$一定(電池を外した)場合で検算すると、$U=Q^2/(2C)$だから$dU=-Q^2 dC/(2C^2)=-\tfrac{1}{2}V^2 dC$となり、エネルギーの減少分がそのまま力の仕事$F\,dx=\tfrac{1}{2}V^2 dC$になる。どちらの条件でも$F$の式が同じになるのは、$F$がその瞬間の$V$と配置だけで決まる量だからである。
+
+一般に、不均一な場の中の小さな双極子が受ける力は$\mathbf{F}=(\mathbf{p}\cdot\nabla)\mathbf{E}$であり、誘導双極子では$\mathbf{p}$自体が$\mathbf{E}$に比例するので、力は場の強い方へ向かい、その大きさは$E^2$の勾配に比例する。これが、帯電した櫛が紙片(分極した誘電体)を引き付ける理由である。紙片の中の電荷は正負同量でも、場が不均一なら近い側の電荷の方が強い力を受け、差し引きが残る。
+

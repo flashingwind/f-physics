@@ -1,0 +1,229 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第3章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第3章 ベクトルの積分
+
+
+### ベクトルの積分；∇ψの線積分
+
+第2章の微分の意味を、積分の言葉で理解し直す。勾配については次の定理が成り立つ。スカラー場 $\psi(x,y,z)$ と、点 (1) から点 (2) へ至る任意の曲線 $\Gamma$ について、
+
+$$
+\psi(2)-\psi(1)=\int_{(1)}^{(2)}(\nabla\psi)\cdot d\mathbf{s}
+$$
+
+右辺は**線積分**で、$\nabla\psi$ と曲線の微小線要素 $d\mathbf{s}$ の内積の積分である。線積分の意味を確認すると、曲線を長さ $\Delta s_i$ の小片に分け、スカラー関数 $f$ の線積分 $\int f\,ds$ は和 $\sum_i f_i\Delta s_i$ の、最大の $\Delta s_i\to0$ での極限である。ここでは $f$ の代わりに $\nabla\psi$ の接線成分が入り、$(\nabla\psi)_t\,\Delta s=(\nabla\psi)\cdot\Delta\mathbf{s}$ である。
+
+証明は伸縮式（中間項が次々消える和）による。第1の小片については、$\nabla\psi$ の小変位方向の成分が $\psi$ の変化率であることから
+
+$$
+\psi(a)-\psi(1)=(\nabla\psi)_1\cdot\Delta\mathbf{s}_1
+$$
+
+次の小片についても $\psi(b)-\psi(a)=(\nabla\psi)_2\cdot\Delta\mathbf{s}_2$ で、加えると左辺の中間の $\psi(a)$ が消えて $\psi(b)-\psi(1)$ が残る。小片を最後まで加えていけば
+
+$$
+\psi(2)-\psi(1)=\sum_i(\nabla\psi)_i\cdot\Delta\mathbf{s}_i
+$$
+
+左辺は小片の取り方によらないので、右辺の極限が取れて定理が得られる。証明から明らかなように、結果は曲線 $\Gamma$ の選び方にもよらない。勾配は変化率だから、その積分が全体の変化に戻るのは当然であり、この定理はほぼ自明なほうのものである。記法として $(\nabla\psi)\cdot d\mathbf{s}=\nabla\psi\cdot d\mathbf{s}$ と書く。
+
+### ベクトル場の流束
+
+発散の意味を掴むため、まず熱の流れで**流束**を定義する。閉曲面 $S$ に囲まれた体積 $V$ について、外向き単位法線を $\mathbf{n}$ とすると、面要素 $da$ を外へ通過する熱は、法線成分 $h_n=\mathbf{h}\cdot\mathbf{n}$ に面積を掛けた $\mathbf{h}\cdot\mathbf{n}\,da$ であり、全体では
+
+$$
+\text{$S$ を外へ出る熱の総量}=\int_S\mathbf{h}\cdot\mathbf{n}\,da
+$$
+
+この面積分を $\mathbf{h}$ の $S$ を通る流束と呼ぶ。$\mathbf{h}$ は熱流の「電流密度」に当たり、流束は単位時間あたりの熱エネルギー（総電流）である。この言葉は、何も流れていない場にも一般化する。電場については
+
+$$
+\mathbf{E}\text{ の }S\text{ を通る流束}=\int_S\mathbf{E}\cdot\mathbf{n}\,da
+$$
+
+と定義し、流束とは「法線成分の面積分」のこととする。面は閉じていなくてもよい。
+
+熱が保存される場合（内部で生成も吸収もされない場合）、閉曲面から正味の熱が出れば内部の熱 $Q$ はその分だけ減るので、
+
+$$
+\int_S\mathbf{h}\cdot\mathbf{n}\,da=-\frac{dQ}{dt}
+$$
+
+が成り立つ。
+
+流束の重要な性質は加法性である。体積 $V$ を切り口 $S_{ab}$ で $V_1$ と $V_2$ に分けると、$V_1$ の表面は $S_a+S_{ab}$、$V_2$ の表面は $S_b+S_{ab}$ である。切り口に対する外向き法線は2つの体積で逆向き（$\mathbf{n}_1=-\mathbf{n}_2$）だから、切り口を通る流束は $V_1$ と $V_2$ で符号が逆になり、2つの流束の和ではちょうど打ち消す。残るのは元の外表面 $S_a+S_b=S$ の流束だけである。したがって、外表面を通る流束は、体積をどのように細分しても、各小片から出る流束の和に等しい。
+
+### 立方体からの流束；ガウスの定理
+
+辺が座標軸に平行な微小立方体（辺の長さ $\Delta x,\Delta y,\Delta z$、角の座標 $(x,y,z)$）について、任意のベクトル場 $\mathbf{C}$ の流束を6つの面の和として計算する。
+
+$x$ に垂直な2つの面について考える。面1（$x$ 側の面）から外へ出る流束は、$C_x$ の符号が外向き法線と逆なので $-C_x(1)\,\Delta y\,\Delta z$、面2（$x+\Delta x$ 側の面）からは $+C_x(2)\,\Delta y\,\Delta z$ である。ここで面の中心での値に面積を掛ける近似を使った（立方体が小さいほど良い近似で、誤差は辺の長さの2次以上の量）。2つの面の $C_x$ は少しだけ違い、$\Delta x$ が小さければ Taylor 展開の1次までで
+
+$$
+C_x(2)=C_x(1)+\frac{\partial C_x}{\partial x}\Delta x
+$$
+
+と書ける。次の項は $(\Delta x)^2$ を含み、最終的に体積 $\Delta x\Delta y\Delta z$ で割って $\Delta x\to0$ の極限を取る際に消えるので落とす。2面の流束の和は $C_x(1)$ の項が打ち消し合い、
+
+$$
+\text{面1と2からの流束}=\frac{\partial C_x}{\partial x}\,\Delta x\,\Delta y\,\Delta z
+$$
+
+となる。偏微分の評価点は厳密には面1の中心だが、微小立方体の極限では角 $(x,y,z)$ で評価しても誤差は無視できる。他の2対の面についても同様に
+
+$$
+\text{面3と4}=\frac{\partial C_y}{\partial y}\Delta x\Delta y\Delta z,\qquad \text{面5と6}=\frac{\partial C_z}{\partial z}\Delta x\Delta y\Delta z
+$$
+
+全部を加えると、括弧の中はちょうど $\nabla\cdot\mathbf{C}$ であり、$\Delta x\Delta y\Delta z=\Delta V$ だから、微小立方体については
+
+$$
+\int_{\text{表面}}\mathbf{C}\cdot\mathbf{n}\,da=(\nabla\cdot\mathbf{C})\,\Delta V
+$$
+
+が成り立つ。ここに発散の意味が現れる。**発散 $\nabla\cdot\mathbf{C}$ は、その点の近傍で単位体積あたり外へ出ていく $\mathbf{C}$ の流束である。**
+
+有限の体積については、前節の加法性を使う。体積を微小立方体に細分し、各立方体に上の式を適用して加えると、内部の面の流束は打ち消し合い、外表面の流束だけが残り、右辺の和は発散の体積積分になる。これが **Gauss の定理**である。
+
+$$
+\int_S\mathbf{C}\cdot\mathbf{n}\,da=\int_V\nabla\cdot\mathbf{C}\,dV
+$$
+
+$S$ は任意の閉曲面、$V$ はその内部の体積である。
+
+### 熱伝導；拡散方程式
+
+Gauss の定理の応用として熱の保存を微分形に直す。熱源が無く熱が保存される場合、微小立方体から出る熱は $(\nabla\cdot\mathbf{h})\,\Delta V$ であり、これは内部の熱の減少率に等しくなければならない。単位体積あたりの熱を $q$ とすると、立方体内の熱は $q\,\Delta V$ で、その減少率は $-\dfrac{\partial q}{\partial t}\Delta V$ だから、$\Delta V$ を消して
+
+$$
+-\frac{\partial q}{\partial t}=\nabla\cdot\mathbf{h}
+$$
+
+が得られる。これは保存則の微分形であり、前節の積分形 $\int_S\mathbf{h}\cdot\mathbf{n}\,da=-dQ/dt$ と同じ物理を述べている。大きな体積については Gauss の定理で両方向を行き来できる。
+
+点状の熱源の例も示される。定常状態で、1秒あたり $W$ の熱を発生する点熱源を囲む閉曲面を通る流束は、どの面を取っても $W$ である。源を中心とする半径 $R$ の球面を選び、対称性から $\mathbf{h}$ は動径方向を向き球面上で大きさが一定と仮定する（これは数学に物理的な直観を加えた推測である）と、流束は $h\cdot4\pi R^2$ だから
+
+$$
+h\cdot4\pi R^2=W\quad\Longrightarrow\quad \mathbf{h}=\frac{W}{4\pi R^2}\,\mathbf{e}_r
+$$
+
+となり、熱流は距離の2乗に反比例する。
+
+一般の熱伝導については、第2章の $\mathbf{h}=-\kappa\nabla T$ と保存則を組み合わせる。熱源の無い場所では
+
+$$
+-\frac{\partial q}{\partial t}=\nabla\cdot\mathbf{h}=-\nabla\cdot(\kappa\nabla T)
+$$
+
+$\kappa$ が定数なら $\nabla\cdot\nabla=\nabla^2$ を使って $\dfrac{\partial q}{\partial t}=\kappa\nabla^2T$ となる。さらに、単位体積あたりの熱が温度に比例する（比熱 $c_v$ を単位体積あたりで測り、$\partial q/\partial t=c_v\,\partial T/\partial t$）と仮定すると、
+
+$$
+\frac{\partial T}{\partial t}=\frac{\kappa}{c_v}\nabla^2T=D\nabla^2T
+$$
+
+が得られる。これが**熱の拡散方程式**で、$D=\kappa/c_v$ は拡散定数である。気体や中性子の拡散など、多くの拡散現象が同じ形の方程式で記述される。
+
+### ベクトル場の循環
+
+回転についても発散と並行に進める。任意のベクトル場 $\mathbf{C}$ について、閉ループ $\Gamma$ に沿って接線成分を1周積分したものを $\mathbf{C}$ の $\Gamma$ のまわりの**循環**という。
+
+$$
+\oint_\Gamma C_t\,ds=\oint_\Gamma\mathbf{C}\cdot d\mathbf{s}
+$$
+
+積分記号の小さい円は、1点から別の点へではなく1周する積分であることを示す。
+
+流束と同様に、循環にも加法性がある。ループ上の2点 (1)、(2) を結ぶ近道 $\Gamma_{ab}$ でループを $\Gamma_1$ と $\Gamma_2$ に分けると、近道を通る積分は2つのループで進行方向が逆になり符号が逆になる。同じ回転の向きで数えれば、2つの循環の和は近道の分が打ち消し合い、元のループの循環に等しい。分割を繰り返せば、大きなループの循環は小ループの循環の和になる。
+
+大きなループを縁とする面を1つ選び、その面を小さなループ（十分小さければほぼ平面上のほぼ正方形）で覆うと、大きなループの循環は小正方形の循環の和として計算できる。
+
+### 正方形のまわりの循環；ストークスの定理
+
+1つの小正方形について循環を計算する。座標軸は自由に選べるので、その正方形が $xy$ 平面内にある場合に計算し、結果をベクトルの形で書けば任意の向きに通用する。正方形の左下の角を $(x,y)$、辺を $\Delta x,\Delta y$ とし、反時計回りに回る。$\mathbf{C}$ が1辺の間ではあまり変わらないとして（正方形が小さいほど良い近似）、4辺の寄与は
+
+$$
+\oint\mathbf{C}\cdot d\mathbf{s}=C_x(1)\,\Delta x+C_y(2)\,\Delta y-C_x(3)\,\Delta x-C_y(4)\,\Delta y
+$$
+
+辺3、辺4の負号は、進行方向が座標軸の正の向きと逆だからである。辺1と辺3の組は $[C_x(1)-C_x(3)]\,\Delta x$ となる。1次の近似では差は0に見えるが、$C_x$ の $y$ 方向の変化率まで入れると
+
+$$
+C_x(3)=C_x(1)+\frac{\partial C_x}{\partial y}\Delta y
+$$
+
+次の項は $(\Delta y)^2$ を含み、面積 $\Delta x\Delta y$ で割って極限を取る際に消えるので落とす。よってこの組の寄与は $-\dfrac{\partial C_x}{\partial y}\Delta x\,\Delta y$ である。同様に辺2と辺4の組は、$C_y(2)-C_y(4)$ に $C_y$ の $x$ 方向の変化を入れて $\dfrac{\partial C_y}{\partial x}\Delta x\,\Delta y$ となる。合わせて、正方形の循環は
+
+$$
+\left(\frac{\partial C_y}{\partial x}-\frac{\partial C_x}{\partial y}\right)\Delta x\,\Delta y=(\nabla\times\mathbf{C})_z\,\Delta a
+$$
+
+括弧の中は回転の $z$ 成分であり、$\Delta x\Delta y$ は正方形の面積 $\Delta a$ である。$z$ 成分とは面に垂直な（法線方向の）成分のことだから、任意の向きの微小正方形については不変な形で
+
+$$
+\oint\mathbf{C}\cdot d\mathbf{s}=(\nabla\times\mathbf{C})_n\,\Delta a=(\nabla\times\mathbf{C})\cdot\mathbf{n}\,\Delta a
+$$
+
+と書ける。すなわち、**微小正方形のまわりの循環は、回転の法線成分に面積を掛けたもの**であり、回転の物理的な意味は単位面積あたりの循環である。
+
+面を小正方形で覆って循環を加え合わせると、内部の辺は打ち消し合い、縁の大きなループの循環だけが残る。これが **Stokes の定理**である。
+
+$$
+\oint_\Gamma\mathbf{C}\cdot d\mathbf{s}=\int_S(\nabla\times\mathbf{C})_n\,da
+$$
+
+$S$ は $\Gamma$ を縁とする任意の面である。符号の約束として、正の法線は右手の法則で決める。右手の指先を正の回転方向（$d\mathbf{s}$ の向き）に沿わせたとき、親指の向きが正の法線である。
+
+### 渦なしの場とわき口なしの場
+
+$\nabla\times\mathbf{C}$ がいたるところ0なら、Stokes の定理により任意のループの循環は0である。閉曲線上の2点 (1)、(2) を結ぶ2通りの経路で線積分が等しくなるので、(1) から (2) への線積分は経路によらず両端の位置だけで決まる。第I巻で示したように、このとき線積分はある位置の関数の差として表せ、その関数の勾配が場自身になる。すなわち、
+
+$$
+\nabla\times\mathbf{C}=\mathbf{0}\ \text{（いたるところ）}\quad\Longrightarrow\quad \mathbf{C}=\nabla\psi\ \text{となる }\psi\text{ が存在する}
+$$
+
+このような場はスカラー場だけで記述できる。逆に、任意のスカラー場 $\phi$ について $\nabla\phi$ の閉ループ積分は、定理1で始点と終点が一致すれば0になることから0であり、Stokes の定理で任意の面について $\int(\nabla\times(\nabla\phi))_n\,da=0$ となる。任意の面で積分が0なら被積分関数は0だから、$\nabla\times(\nabla\phi)=\mathbf{0}$ が積分の言葉でも示された（第2章の成分計算による証明と同じ結果）。
+
+発散についても対応する結果がある。小さなループを大きな面で塞ぎ、ループを1点に縮めると面は閉曲面になる。$\mathbf{C}$ が有限なら線積分はループの周とともに0に近づくので、Stokes の定理から閉曲面について
+
+$$
+\int_{\text{閉曲面}}(\nabla\times\mathbf{C})_n\,da=0
+$$
+
+一方、Gauss の定理を $\nabla\times\mathbf{C}$ に適用すると、この面積分は $\int_V\nabla\cdot(\nabla\times\mathbf{C})\,dV$ に等しい。任意の体積でこの積分が0になるためには被積分関数がいたるところ0でなければならず、
+
+$$
+\nabla\cdot(\nabla\times\mathbf{C})=0
+$$
+
+が積分の言葉で再び得られる。
+
+※原典のこの節の見出しは「渦なし（curl-free）」と「わき口なし（divergence-free）」の場の検討だが、本文で詳しく展開されるのは主に渦なしの場のほうである。わき口なしの場については、第2章で証明なしに述べられた定理（$\nabla\cdot\mathbf{D}=0$ なら $\mathbf{D}=\nabla\times\mathbf{C}$ となる $\mathbf{C}$ が存在する）が対応する主張である。
+
+### まとめ
+
+第2章と第3章の要点は次の4つにまとめられる。
+
+1. 演算子 $\partial/\partial x$、$\partial/\partial y$、$\partial/\partial z$ はベクトル演算子 $\nabla=\left(\dfrac{\partial}{\partial x},\dfrac{\partial}{\partial y},\dfrac{\partial}{\partial z}\right)$ の3成分とみなすことができ、$\nabla$ をベクトルとして扱うベクトル代数から得られる公式は正しい。
+2. スカラー場の2点での値の差は、その勾配の接線成分の、2点を結ぶ任意の曲線に沿う線積分に等しい。
+
+$$
+\psi(2)-\psi(1)=\int_{(1)}^{(2)}\nabla\psi\cdot d\mathbf{s}
+$$
+
+3. 任意のベクトルの法線成分の閉曲面にわたる面積分は、その発散の内部の体積にわたる積分に等しい（Gauss の定理）。
+
+$$
+\int_{\text{閉曲面}}\mathbf{C}\cdot\mathbf{n}\,da=\int_{\text{内部の体積}}\nabla\cdot\mathbf{C}\,dV
+$$
+
+4. 任意のベクトルの接線成分の閉ループに沿う線積分は、その回転の法線成分の、ループを縁とする任意の面にわたる面積分に等しい（Stokes の定理）。
+
+$$
+\oint_{\text{縁}}\mathbf{C}\cdot d\mathbf{s}=\int_{\text{面}}(\nabla\times\mathbf{C})\cdot\mathbf{n}\,da
+$$

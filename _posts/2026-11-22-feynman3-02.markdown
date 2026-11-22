@@ -1,0 +1,189 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第2章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第2章 ベクトル場の微分
+
+
+### 物理学を理解するとは
+
+物理学者は問題をいくつかの観点から見る力が必要である。実際の状況は微分方程式を直接解くには複雑すぎることが多いが、解の性質についての勘があれば振る舞いの見当はつく。力線、電気容量、抵抗、インダクタンスといった考えはそのために有用である。一方、どのような発見的なモデルもすべての状況で正確なわけではなく、法則を正確に述べる唯一の方法は微分方程式である。微分方程式は基本的で、知る限り正確であり、一度学べば「学び直す」ものは何も無い。
+
+方程式を解くたびに解の性質について学び、それを力線などの概念と結び付けて覚えることで、初めて方程式を「理解」したことになる。Dirac の言葉では、方程式を実際に解かずにその解の特徴を見抜く方法を持っているときに、その方程式を理解したと言える。数学的な理解だけでは不十分で、数学的には不正確でも物理的な理解は物理学者には絶対に必要である。
+
+通常の講義は単純な状況から複雑な状況へ進み、そのたびに以前学んだ「法則」（ある状況でのみ正しいもの）を忘れる必要がある。この講義は逆に、まず完全な法則を提示し、それから単純な状況へ戻って適用しながら物理的な考えを育てる方針を取る。
+
+### スカラー場とベクトル場；Tとh
+
+第1章の法則の意味を説明するために、まずベクトル場の数学を扱う。前提としてベクトルの代数（内積 $\mathbf{A}\cdot\mathbf{B}=A_xB_x+A_yB_y+A_zB_z$、外積の成分、$\mathbf{A}\times\mathbf{A}=\mathbf{0}$、$\mathbf{A}\cdot(\mathbf{A}\times\mathbf{B})=0$、$\mathbf{A}\cdot(\mathbf{B}\times\mathbf{C})=(\mathbf{A}\times\mathbf{B})\cdot\mathbf{C}$、$\mathbf{A}\times(\mathbf{B}\times\mathbf{C})=\mathbf{B}(\mathbf{A}\cdot\mathbf{C})-\mathbf{C}(\mathbf{A}\cdot\mathbf{B})$）と、微積分の2つの等式
+
+$$
+\Delta f(x,y,z)=\frac{\partial f}{\partial x}\Delta x+\frac{\partial f}{\partial y}\Delta y+\frac{\partial f}{\partial z}\Delta z,\qquad \frac{\partial^2 f}{\partial x\,\partial y}=\frac{\partial^2 f}{\partial y\,\partial x}
+$$
+
+を使う。第1式は $\Delta x,\Delta y,\Delta z\to0$ の極限でのみ正しい（落とした項は増分の2次以上の量で、極限では1次の項に対して無視できる）。
+
+**場**とは、空間の位置に依存する量のことである。各点が1つの数で特徴付けられる場を**スカラー場**という。例は、場所ごとに温度の異なる固体の温度 $T(x,y,z)$ である。値が一定の点を結んだ面は等温面（等値面）と呼ばれ、地図の等高線の3次元版である。各点にベクトルが対応する場は**ベクトル場**で、例は回転する物体の各点の速度である。
+
+もう1つの例が熱の流れのベクトル $\mathbf{h}$ である。温度の高い所から低い所へ熱が流れ、その向きと量が場所ごとに異なる。$\mathbf{h}$ の大きさは、流れに垂直な単位面積を単位時間に通過する熱エネルギーと定義する。単位時間に面要素 $\Delta a$ を通過する熱エネルギーを $\Delta J$、流れの向きの単位ベクトルを $\mathbf{e}_f$ として、
+
+$$
+\mathbf{h}=\frac{\Delta J}{\Delta a}\,\mathbf{e}_f
+$$
+
+である。任意の向きの面については、流れに垂直な面 $\Delta a_1$ と角度 $\theta$ をなす面 $\Delta a_2$ を考えると、通過する熱は同じで面積だけが違い、$\Delta a_1=\Delta a_2\cos\theta$ だから、単位面積あたりの流れは
+
+$$
+\frac{\Delta J}{\Delta a_2}=\frac{\Delta J}{\Delta a_1}\cos\theta=\mathbf{h}\cdot\mathbf{n}
+$$
+
+となる。ここで $\mathbf{n}$ は $\Delta a_2$ の単位法線である。すなわち、法線 $\mathbf{n}$ の面要素を通る単位面積・単位時間あたりの流れは $\mathbf{h}\cdot\mathbf{n}$ で与えられ、これは $\mathbf{h}$ の面に垂直な成分に等しい。この考え方は他のすべてのベクトル場にも適用される。
+
+### 場の微分；grad
+
+場の位置による変化をどう表すか。温度について $\partial T/\partial x$ だけでは座標系の取り方に依存し、スカラーでもベクトルでもない。しかし3つの微分 $\partial T/\partial x$、$\partial T/\partial y$、$\partial T/\partial z$ がベクトルの成分になるのではないか、というのが出発点である。3つの数がベクトルであるためには、座標系を回転させたとき成分が正しく変換しなければならない。それを示す。
+
+鍵は、物理的な2点の間の温度差 $\Delta T$ が座標系によらないスカラーであることである。近くの2点 $P_1$、$P_2$ のずれをベクトル $\Delta\mathbf{R}$（成分 $\Delta x,\Delta y,\Delta z$）とすると、全微分の式から
+
+$$
+\Delta T=\frac{\partial T}{\partial x}\Delta x+\frac{\partial T}{\partial y}\Delta y+\frac{\partial T}{\partial z}\Delta z
+$$
+
+左辺はスカラー、右辺はベクトル $\Delta\mathbf{R}$ の成分との積の和である。一般に、任意のベクトル $\mathbf{A}$ に対して $A_xB_1+A_yB_2+A_zB_3$ が座標系によらないスカラーになれば、$B_1,B_2,B_3$ はあるベクトルの成分でなければならない（内積 $\mathbf{A}\cdot\mathbf{B}$ がスカラーであることの逆向きの使い方）。したがって3つの微分はベクトルの成分であり、この新しいベクトルを $\nabla T$（grad $T$、$T$ の勾配）と書く。
+
+$$
+\nabla T=\left(\frac{\partial T}{\partial x},\frac{\partial T}{\partial y},\frac{\partial T}{\partial z}\right),\qquad \Delta T=\nabla T\cdot\Delta\mathbf{R}
+$$
+
+後者は、近くの2点の温度差が勾配と変位の内積であることを言う。
+
+※原典はこの証明に加えて、$z$ 軸まわりの回転で直接確かめる証明も与える（補足ではなく原典の第2の証明）。角度 $\theta$ だけ回転した座標系では $x'=x\cos\theta+y\sin\theta$、$y'=-x\sin\theta+y\cos\theta$、逆に $x=x'\cos\theta-y'\sin\theta$、$y=x'\sin\theta+y'\cos\theta$ である。$x$ 軸に平行なずれ $\Delta\mathbf{R}$ については元の系で $\Delta T=(\partial T/\partial x)\Delta x$、新しい系では $\Delta x'=\Delta x\cos\theta$、$\Delta y'=-\Delta x\sin\theta$ だから
+
+$$
+\Delta T=\frac{\partial T}{\partial x'}\Delta x'+\frac{\partial T}{\partial y'}\Delta y'=\left(\frac{\partial T}{\partial x'}\cos\theta-\frac{\partial T}{\partial y'}\sin\theta\right)\Delta x
+$$
+
+両者を比べて $\partial T/\partial x=(\partial T/\partial x')\cos\theta-(\partial T/\partial y')\sin\theta$ が得られ、これは $x$ が $x',y'$ から変換される式とまったく同じ形である。よって $\partial T/\partial x$ はベクトルの $x$ 成分として変換する。他の成分も同様である。
+
+$\nabla T$ の向きは、任意の向きへの $T$ の変化率が $\nabla T$ のその向きの成分であることから決まる。成分が最大になるのはベクトル自身の向きだから、$\nabla T$ は $T$ が最も速く増える向き（最も急な上り坂の向き）を向き、大きさはその最大の変化率である。
+
+### 演算子∇
+
+上の議論はどのスカラー場についても同じように進む。変換の式は微分される関数によらないので、$T$ を取り去って演算子だけの等式
+
+$$
+\frac{\partial}{\partial x}=\frac{\partial}{\partial x'}\cos\theta-\frac{\partial}{\partial y'}\sin\theta
+$$
+
+が得られる。微分演算子そのものがベクトルの成分のように変換するので、$\nabla$ を**ベクトル演算子**とみなす。
+
+$$
+\nabla=\left(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\right),\qquad \nabla_x=\frac{\partial}{\partial x},\ \nabla_y=\frac{\partial}{\partial y},\ \nabla_z=\frac{\partial}{\partial z}
+$$
+
+ただし $\nabla$ は演算子であり、それ単独では意味を持たない。$T\nabla$ のようにスカラーを左から掛けても $x$ 成分は $T\,\partial/\partial x$ という演算子のままで、数は得られない。$\nabla T$ のように右に微分すべきものが来て初めて、演算子は「満たされて」物理的なベクトルになる。演算子では順序が本質的であり、通常の代数の交換法則をそのまま使ってはいけない。
+
+### ∇を使う演算
+
+$\nabla$ とベクトル場の組み合わせは、内積と外積の2通りがある。内積 $\nabla\cdot\mathbf{h}$ は成分で書くと
+
+$$
+\nabla\cdot\mathbf{h}=\nabla_xh_x+\nabla_yh_y+\nabla_zh_z=\frac{\partial h_x}{\partial x}+\frac{\partial h_y}{\partial y}+\frac{\partial h_z}{\partial z}
+$$
+
+であり、座標系を替えても同じ数を与えるスカラー場である。この量を $\mathbf{h}$ の**発散（divergence）**、$\nabla\cdot\mathbf{h}=\mathrm{div}\,\mathbf{h}$ と呼ぶ。$\partial h_y/\partial x$ のような他の組み合わせはスカラーでもベクトルの成分でもないので、発散の組み合わせは特別である。発散の物理的な意味（単位体積あたりの流出）は第3章で流束から導く。
+
+外積 $\nabla\times\mathbf{h}$ はベクトルで、外積の成分の規則どおり
+
+$$
+(\nabla\times\mathbf{h})_z=\frac{\partial h_y}{\partial x}-\frac{\partial h_x}{\partial y},\qquad (\nabla\times\mathbf{h})_x=\frac{\partial h_z}{\partial y}-\frac{\partial h_y}{\partial z},\qquad (\nabla\times\mathbf{h})_y=\frac{\partial h_x}{\partial z}-\frac{\partial h_z}{\partial x}
+$$
+
+である。これを $\mathbf{h}$ の**回転（curl）**、$\nabla\times\mathbf{h}=\mathrm{curl}\,\mathbf{h}$ と呼ぶ。意味は第3章で循環から導く。まとめると $\nabla$ の組み合わせは3種類で、$\nabla T$ はベクトル、$\nabla\cdot\mathbf{h}$ はスカラー、$\nabla\times\mathbf{h}$ はベクトルであり、いずれも座標系によらない形で場の空間変化を述べる。
+
+この記法で第1章の法則は Maxwell の方程式として書ける。$\rho$ を電荷密度（単位体積あたりの電荷）、$\mathbf{j}$ を電流密度（単位面積を単位時間に流れる電荷）として、
+
+$$
+\nabla\cdot\mathbf{E}=\frac{\rho}{\epsilon_0},\qquad \nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t},\qquad \nabla\cdot\mathbf{B}=0,\qquad c^2\,\nabla\times\mathbf{B}=\frac{\partial\mathbf{E}}{\partial t}+\frac{\mathbf{j}}{\epsilon_0}
+$$
+
+この4式が古典電磁場の理論のすべてを含む。
+
+### 熱伝導の微分方程式
+
+ベクトル記法のもう1つの例として熱伝導の法則を導く。厚さ $d$、面積 $A$ の板の両面を温度 $T_2$、$T_1$ に保つと、単位時間に流れる熱 $J$ は面積と温度差に比例し、厚さに反比例する。
+
+$$
+J=\kappa(T_2-T_1)\frac{A}{d}
+$$
+
+$\kappa$ は熱伝導率である。一般の形の物体については、等温面に平行な微小な板を切り出して同じ法則を適用する。面積 $\Delta A$、厚さ $\Delta s$ の微小板では
+
+$$
+\Delta J=\kappa\,\Delta T\,\frac{\Delta A}{\Delta s}
+$$
+
+$\Delta J/\Delta A$ は定義により $|\mathbf{h}|$ である。熱は等温面に垂直に、高温側から低温側へ流れる。$\Delta s$ は等温面に垂直な方向の長さだから、$\Delta T/\Delta s$ は $T$ の最大の変化率、すなわち $|\nabla T|$ に等しい。$\nabla T$ は温度の増える向き、$\mathbf{h}$ はその逆向きだから、符号を付けてベクトルの式にまとめると
+
+$$
+\mathbf{h}=-\kappa\nabla T
+$$
+
+これが固体中の熱伝導の微分方程式である。負号は熱が温度の「下り坂」へ流れることを表す。
+
+### ベクトル場の2階微分
+
+$\nabla$ を2回作用させる組み合わせは次の5つですべてである。(a) $\nabla\cdot(\nabla T)$、(b) $\nabla\times(\nabla T)$、(c) $\nabla(\nabla\cdot\mathbf{h})$、(d) $\nabla\cdot(\nabla\times\mathbf{h})$、(e) $\nabla\times(\nabla\times\mathbf{h})$。
+
+(b) は $\mathbf{A}\times\mathbf{A}=\mathbf{0}$ の形に対応し、実際0になる。成分で確かめると
+
+$$
+[\nabla\times(\nabla T)]_z=\frac{\partial}{\partial x}\left(\frac{\partial T}{\partial y}\right)-\frac{\partial}{\partial y}\left(\frac{\partial T}{\partial x}\right)=0
+$$
+
+であり、混合偏微分の等号 $\partial^2T/\partial x\partial y=\partial^2T/\partial y\partial x$ によって消える。他の成分も同様で、任意のスカラー場について
+
+$$
+\nabla\times(\nabla T)=\mathbf{0}
+$$
+
+(d) は $\mathbf{A}\cdot(\mathbf{A}\times\mathbf{B})=0$（外積は $\mathbf{A}$ に垂直）の形に対応し、成分で展開すれば混合偏微分の打ち消し合いにより
+
+$$
+\nabla\cdot(\nabla\times\mathbf{h})=0
+$$
+
+となる。原典は成分計算を読者に委ねる形で述べる。
+
+※(d) の成分計算を補う（補足）。$\nabla\cdot(\nabla\times\mathbf{h})=\dfrac{\partial}{\partial x}\left(\dfrac{\partial h_z}{\partial y}-\dfrac{\partial h_y}{\partial z}\right)+\dfrac{\partial}{\partial y}\left(\dfrac{\partial h_x}{\partial z}-\dfrac{\partial h_z}{\partial x}\right)+\dfrac{\partial}{\partial z}\left(\dfrac{\partial h_y}{\partial x}-\dfrac{\partial h_x}{\partial y}\right)$ と展開すると、$\partial^2h_z/\partial x\partial y$ と $-\partial^2h_z/\partial y\partial x$ のように各成分の混合偏微分が正負の対になって現れ、等号によりすべて消える。
+
+この2つの恒等式から、証明なしに述べられる2つの定理がある。$\nabla\times\mathbf{A}=\mathbf{0}$ なら、$\mathbf{A}$ は常にあるスカラー場 $\psi$ の勾配 $\mathbf{A}=\nabla\psi$ として書ける。$\nabla\cdot\mathbf{D}=0$ なら、$\mathbf{D}$ は常にあるベクトル場 $\mathbf{C}$ の回転 $\mathbf{D}=\nabla\times\mathbf{C}$ として書ける。勾配の回転が0、回転の発散が0であることの逆向きの主張である。
+
+※原典はこの2定理を証明なしに提示する。渦なしの場合の証明の骨格は第3章のストークスの定理から得られる（第3章「渦なしの場とわき口なしの場」参照）。
+
+(a) は一般には0でなく、成分で書くと
+
+$$
+\nabla\cdot(\nabla T)=\frac{\partial^2T}{\partial x^2}+\frac{\partial^2T}{\partial y^2}+\frac{\partial^2T}{\partial z^2}=\nabla^2T
+$$
+
+というスカラー場になる。$\nabla^2$ は**ラプラシアン（Laplace 演算子）**と呼ばれるスカラー演算子である。スカラー演算子だからベクトルにも成分ごとに作用でき、直交座標では $\nabla^2\mathbf{h}=(\nabla^2h_x,\nabla^2h_y,\nabla^2h_z)$ と定義する。
+
+(e) はベクトル恒等式 $\mathbf{A}\times(\mathbf{B}\times\mathbf{C})=\mathbf{B}(\mathbf{A}\cdot\mathbf{C})-\mathbf{C}(\mathbf{A}\cdot\mathbf{B})$ を使う。ただし演算子では順序が問題になる。$\mathbf{A},\mathbf{B}$ を $\nabla$、$\mathbf{C}$ を $\mathbf{h}$ に置き換える際、$(\mathbf{A}\cdot\mathbf{B})\mathbf{C}$ の形（演算子同士の内積が先に $\mathbf{h}$ へ作用する形）に書き直してから代入しないと、最後の項が満たされない演算子のまま残る。正しい順序で代入すると
+
+$$
+\nabla\times(\nabla\times\mathbf{h})=\nabla(\nabla\cdot\mathbf{h})-\nabla^2\mathbf{h}
+$$
+
+が得られ、成分計算でも確かめられる。(c) $\nabla(\nabla\cdot\mathbf{h})$ はベクトル場ではあるが、特別なことはない。なお $(\nabla\times\nabla)$ という新しい演算子を作らないのは、同じ関数に作用する2つの $\nabla$ の外積は (b) の通り0になるためである。
+
+### おとし穴
+
+落とし穴は2つある。第1に、$(\nabla\psi)\times(\nabla\phi)$ は一般に0ではない。$\mathbf{A}\times\mathbf{A}=\mathbf{0}$ に見えるが、2つの $\nabla$ は異なる関数 $\psi$ と $\phi$ に作用する異なる演算子であり、$\nabla\psi$ と $\nabla\phi$ の向きは一般に平行ではない。$\nabla\times(\nabla\psi)=\mathbf{0}$ が成り立つのは、2つの $\nabla$ が同じ関数に作用する場合に限る。
+
+第2に、ここまでの簡単な規則は直交座標でのみ安全である。$(\nabla^2\mathbf{h})_x=\nabla^2h_x$ は直交座標では正しいが、動径成分については $(\nabla^2\mathbf{h})_r\neq\nabla^2h_r$ である。極座標では「動径方向」自体が点ごとに変わり、定数ベクトル場でも動径成分は点ごとに変化してしまうため、成分の微分に追加の項が現れる。$\nabla^2$ 自体はスカラー演算子なので任意の座標系で書けるが、ベクトルへ作用させるときは成分が固定された方向（直交座標の $x,y,z$ 成分）に対してのみ使うのが安全である。
+

@@ -1,0 +1,167 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第14章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第14章 色々の条件下の磁場
+
+
+### ベクトルポテンシャル
+
+定常電流の磁場の基本方程式は
+
+$$
+\nabla\cdot\mathbf{B}=0,\qquad c^2\nabla\times\mathbf{B}=\frac{\mathbf{j}}{\epsilon_0}
+$$
+
+である。対称性を当て推量に頼らず一般に解く方法が欲しい。静電場では $\nabla\times\mathbf{E}=0$ から $\mathbf{E}=-\nabla\phi$ と書けた。磁場では $\nabla\times\mathbf{B}$ は0でないので同じ手は使えないが、$\nabla\cdot\mathbf{B}$ は**常に**0である。そして回転の発散は恒等的に0だから、
+
+$$
+\mathbf{B}=\nabla\times\mathbf{A}
+$$
+
+と書けるベクトル場 $\mathbf{A}$ が存在する。この $\mathbf{A}$ を**ベクトル・ポテンシャル**という。成分で書けば
+
+$$
+B_x=\frac{\partial A_z}{\partial y}-\frac{\partial A_y}{\partial z},\qquad B_y=\frac{\partial A_x}{\partial z}-\frac{\partial A_z}{\partial x},\qquad B_z=\frac{\partial A_y}{\partial x}-\frac{\partial A_x}{\partial y}
+$$
+
+である。$\mathbf{B}=\nabla\times\mathbf{A}$ と置くことで $\nabla\cdot\mathbf{B}=\nabla\cdot(\nabla\times\mathbf{A})=0$ は自動的に満たされる。
+
+$\mathbf{A}$ は一意的ではない。スカラー場 $\psi$ の勾配を加えた $\mathbf{A}'=\mathbf{A}+\nabla\psi$ も、$\nabla\times\nabla\psi=0$ だから同じ $\mathbf{B}$ を与える。実際、$\nabla\times\mathbf{A}'=\nabla\times\mathbf{A}$ の条件は $\nabla\times(\mathbf{A}'-\mathbf{A})=0$、すなわち $\mathbf{A}'-\mathbf{A}=\nabla\psi$ と同等である。そこで自由度を使って、静磁気では簡単のために
+
+$$
+\nabla\cdot\mathbf{A}=0
+$$
+
+と選ぶ(この選び方をゲージの選択という)。$\mathbf{A}$ の完全な定義は $\nabla\times\mathbf{A}=\mathbf{B}$ と $\nabla\cdot\mathbf{A}=0$ の組である。
+
+例として一様な磁場 $\mathbf{B}_0$($z$ 方向)のベクトル・ポテンシャルは、例えば $\mathbf{A}=(-B_0 y,0,0)$、あるいは $\mathbf{A}=(0,B_0 x,0)$、あるいは対称な形 $\mathbf{A}=\tfrac{1}{2}\mathbf{B}_0\times\mathbf{r}$ など、複数ある。最後の形では $\mathbf{A}$ は $z$ 軸のまわりを回り、大きさは軸からの距離に比例する。ソレノイド内部の軸方向の場についても、$\mathbf{A}$ はソレノイドの電流と同じ向きに周回する。
+
+もう1つの見方として、ストークスの定理から
+
+$$
+\oint_C\mathbf{A}\cdot d\mathbf{s}=\int_S(\nabla\times\mathbf{A})\cdot\mathbf{n}\,dS=\int_S\mathbf{B}\cdot\mathbf{n}\,dS
+$$
+
+すなわち、**$\mathbf{A}$ の任意の閉曲線に沿う循環は、その曲線を通る $\mathbf{B}$ の磁束に等しい**。一様な場の中で半径 $r$ の円を取れば、磁束は $B_0\pi r^2$、循環は $A\cdot2\pi r$($\mathbf{A}$ が接線方向で大きさ一定として)だから、等しく置いて $A=B_0 r/2$ が得られ、上の対称な形と一致する。
+
+### 電流のつくるベクトルポテンシャル
+
+$\mathbf{B}=\nabla\times\mathbf{A}$ をアンペールの法則 $c^2\nabla\times\mathbf{B}=\mathbf{j}/\epsilon_0$ に代入すると、
+
+$$
+c^2\nabla\times(\nabla\times\mathbf{A})=\frac{\mathbf{j}}{\epsilon_0}
+$$
+
+ベクトル恒等式 $\nabla\times(\nabla\times\mathbf{A})=\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A}$ を使い、ゲージ条件 $\nabla\cdot\mathbf{A}=0$ を代入すると第1項が消えて、
+
+$$
+\nabla^2\mathbf{A}=-\frac{\mathbf{j}}{\epsilon_0 c^2}
+$$
+
+が得られる。成分ごとには $\nabla^2 A_x=-j_x/(\epsilon_0 c^2)$ など3つのポアソン方程式であり、静電場の $\nabla^2\phi=-\rho/\epsilon_0$ とまったく同じ形である。したがって解も同じ形に書ける。
+
+$$
+\mathbf{A}(\mathbf{r})=\frac{1}{4\pi\epsilon_0 c^2}\int\frac{\mathbf{j}(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,dV'
+$$
+
+原理はこうである。**$\mathbf{A}$ の $x$ 成分は、電荷密度 $j_x/c^2$ が作る静電ポテンシャルと同じもの**であり、$y$、$z$ 成分についても同様である。静電場で解いた問題は、そのまま磁場の問題の解に翻訳できる。
+
+### 直線電流
+
+長い直線導線をベクトル・ポテンシャルで解き直す。半径 $a$ の導線が $z$ 方向に一様な電流密度 $\mathbf{j}$ で電流 $I$ を運ぶとする。$j_x=j_y=0$ だから $A_x=A_y=0$ で、必要なのは $A_z$ だけである。これは、線電荷密度 $\lambda$ の帯電した円柱の静電ポテンシャルと同型である。外部では帯電円柱のポテンシャルが $-\dfrac{\lambda}{2\pi\epsilon_0}\ln r+\text{const.}$ であることに対応して、$\lambda$ を $I/c^2$ に対応させて
+
+$$
+A_z=-\frac{I}{2\pi\epsilon_0 c^2}\ln r+\text{const.}\qquad(r>a)
+$$
+
+が得られる。$\mathbf{B}=\nabla\times\mathbf{A}$ を計算すると、0でない微分は $\partial A_z/\partial x$ と $\partial A_z/\partial y$ だけで、
+
+$$
+B_x=\frac{\partial A_z}{\partial y}=-\frac{I}{2\pi\epsilon_0 c^2}\frac{y}{r^2},\qquad B_y=-\frac{\partial A_z}{\partial x}=\frac{I}{2\pi\epsilon_0 c^2}\frac{x}{r^2}
+$$
+
+となる。これは同心円方向を向き、大きさは $\sqrt{B_x^2+B_y^2}=\dfrac{I}{2\pi\epsilon_0 c^2 r}$ で、第13章のアンペールの法則による結果と一致する。内部($r<a$)についても、帯電円柱内部のポテンシャルの解を翻訳すれば、$B$ が $r$ に比例して増えることが分かる。
+
+### 長いソレノイド
+
+単位長さあたりの電流が $nI$ の無限に長いソレノイドを、円筒面上の**面電流密度**で表す。外部の $\mathbf{A}$ は、面電荷を持つ円筒の静電ポテンシャルの問題に帰着する。ただしソレノイドの電流は軸まわりの周方向であるため、対応する $\mathbf{A}$ も周方向を向く。
+
+内部と外部で $\mathbf{A}$ の循環と磁束の関係を使う方が見通しがよい。半径 $r$ の円に沿う $\mathbf{A}$ の循環は、その円を通る磁束に等しい。外部($r>a$、$a$ はソレノイドの半径)では、磁束は内部の場 $B_0=nI/(\epsilon_0 c^2)$ と断面積 $\pi a^2$ の積で一定だから、循環 $A_\phi\cdot2\pi r=B_0\pi a^2$ より
+
+$$
+A_\phi=\frac{B_0 a^2}{2r}\qquad(r>a)
+$$
+
+となり、$A_\phi$ は $1/r$ で減る。その回転を取ると外部では $\mathbf{B}=0$ になることが確かめられる。内部($r<a$)では磁束が $B_0\pi r^2$ だから、
+
+$$
+A_\phi=\frac{B_0 r}{2}\qquad(r<a)
+$$
+
+となり、$\mathbf{A}$ は $r$ に比例し、その回転が一様な $B_0$ を与える。
+
+### 小さいループ電流の場；磁気双極子
+
+小さい電流ループ(大きさに比べて遠方だけを考える)の場を、ベクトル・ポテンシャルで求める。辺の長さが $a$、$b$ の矩形ループが電流 $I$ を運ぶとする。ループを、向かい合う2辺に流れる逆向き電流の対として見ると、$A$ の各成分は、逆符号の電荷を持つ2本の帯電した棒の静電ポテンシャルの問題に対応する。遠方ではそのポテンシャルは電気双極子のポテンシャル $\phi=\dfrac{1}{4\pi\epsilon_0}\dfrac{p\cos\theta}{r^2}$ の形になる。棒の電荷と間隔の積である双極子モーメントを、電流と辺の間隔の積に置き換えて成分を組み立てると、遠方のベクトル・ポテンシャルは
+
+$$
+\mathbf{A}=\frac{1}{4\pi\epsilon_0 c^2}\frac{\boldsymbol{\mu}\times\mathbf{r}}{r^3}
+$$
+
+となる。ここで
+
+$$
+\boldsymbol{\mu}=I\times(\text{ループの面積}),\qquad \boldsymbol{\mu}=IA\,\mathbf{n}
+$$
+
+を**磁気モーメント**(磁気双極子モーメント)といい、$\mathbf{n}$ はループ面の法線(電流に対して右手の向き)である。$\mathbf{A}$ は $\boldsymbol{\mu}$ の軸のまわりを、ループの電流と同じ向きに周回する。
+
+$\mathbf{B}=\nabla\times\mathbf{A}$ を成分ごとに計算すると(※下に導出)、電気双極子の電場とまったく同じ形の
+
+$$
+\mathbf{B}=\frac{1}{4\pi\epsilon_0 c^2}\frac{1}{r^3}\left[3(\boldsymbol{\mu}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}}-\boldsymbol{\mu}\right]\qquad(r\gg\text{ループの大きさ})
+$$
+
+が得られる。すなわち、**任意の小さい電流ループは磁気双極子**であり、その遠方の場は電気双極子の場と同型で、$1/r^3$ で弱くなる。
+
+※原典は $\mathbf{A}$ から $\mathbf{B}$ への微分計算の詳細を省略しているので補う(補足)。$\boldsymbol{\mu}$ を $z$ 方向に取ると、$\mathbf{A}=\dfrac{1}{4\pi\epsilon_0 c^2}\dfrac{\mu\sin\theta}{r^2}\,\hat{\boldsymbol{\phi}}$ と書ける。球座標での回転の $\theta$ 成分と $r$ 成分だけが残り、
+
+$$
+B_r=\frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta\,A_\phi)=\frac{1}{4\pi\epsilon_0 c^2}\frac{2\mu\cos\theta}{r^3},\qquad B_\theta=-\frac{1}{r}\frac{\partial}{\partial r}(rA_\phi)=\frac{1}{4\pi\epsilon_0 c^2}\frac{\mu\sin\theta}{r^3}
+$$
+
+これをベクトル形にまとめ直すと上の式になる。軸上($\theta=0$)では $B=\dfrac{1}{4\pi\epsilon_0 c^2}\dfrac{2\mu}{r^3}$、赤道面($\theta=\pi/2$)ではその半分の大きさで逆向きである。
+
+### 回路のベクトルポテンシャル
+
+細い導線の回路については、体積積分を線積分に直せる。体積要素を $dV=A\,ds$(断面積 $A$、線要素 $ds$)と書き、$\mathbf{j}$ が導線の向きと平行で $jA=I$ であることを使うと、
+
+$$
+\mathbf{A}(\mathbf{r})=\frac{1}{4\pi\epsilon_0 c^2}\int\frac{\mathbf{j}\,dV'}{|\mathbf{r}-\mathbf{r}'|}=\frac{I}{4\pi\epsilon_0 c^2}\oint\frac{d\mathbf{s}'}{|\mathbf{r}-\mathbf{r}'|}
+$$
+
+となる。積分は回路全体を1周する。電流 $I$ が回路全体で一定であることが、この形にまとまる条件である。
+
+### ビオ‐サバールの法則
+
+$\mathbf{B}$ を電流から直接求める積分も存在する。$\mathbf{A}$ の積分表示の両辺の回転を取ると $\mathbf{B}=\nabla\times\mathbf{A}$ が得られるが、ここで微分は場の点 $\mathbf{r}$ についてのもので、積分の中の $\mathbf{j}(\mathbf{r}')$ は $\mathbf{r}$ に依存しない。$1/|\mathbf{r}-\mathbf{r}'|$ の勾配が $\nabla\dfrac{1}{|\mathbf{r}-\mathbf{r}'|}=-\dfrac{\mathbf{r}-\mathbf{r}'}{|\mathbf{r}-\mathbf{r}'|^3}$ であることと、$\nabla\times(f\mathbf{j})=\nabla f\times\mathbf{j}$($\mathbf{j}$ は $\mathbf{r}$ について定数ベクトルとして扱う)を代入すると、
+
+$$
+\mathbf{B}(\mathbf{r})=\frac{1}{4\pi\epsilon_0 c^2}\int\frac{\mathbf{j}(\mathbf{r}')\times(\mathbf{r}-\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|^3}\,dV'
+$$
+
+が得られる。これが**ビオ-サバールの法則**の体積電流に対する形である。細い導線の回路では $\mathbf{j}\,dV'\to I\,d\mathbf{s}'$ と置き換えて、
+
+$$
+\mathbf{B}(\mathbf{r})=\frac{I}{4\pi\epsilon_0 c^2}\oint\frac{d\mathbf{s}'\times(\mathbf{r}-\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|^3}
+$$
+
+となる。微小部分 $d\mathbf{s}'$ の寄与だけを見れば、大きさが $I\,ds'\sin\alpha/R^2$($\alpha$ は $d\mathbf{s}'$ と $\mathbf{r}-\mathbf{r}'$ のなす角、$R=|\mathbf{r}-\mathbf{r}'|$)で、両者に垂直な向きの場である。
+
+※静電場で $\mathbf{E}$ を電荷から直接求める積分が重い計算になりがちなのと同様、この積分も3成分分の計算が必要で、通常は $\mathbf{A}$ を先に求める方が楽である、というのが原典の評価である(補足ではなく原典の注意)。
+

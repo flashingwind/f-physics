@@ -1,0 +1,197 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第4章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第4章 静電気
+
+
+### 静電磁気学
+
+この巻では電磁気学を扱う。まず電荷がすべて静止している場合、すなわち**静電気学**に限る。電荷が動かなければ磁場は現れず、問題は電荷が作る電場 $\mathbf{E}$ だけに帰着する。
+
+静止した2つの電荷 $q_1$、$q_2$ の間に働く力は **Coulomb の法則** で与えられる。$q_1$ から $q_2$ へ向かう単位ベクトルを $\mathbf{e}_r$、距離を $r$ とすると、$q_2$ が受ける力は
+
+$$
+\mathbf{F}=\frac{1}{4\pi\epsilon_0}\frac{q_1q_2}{r^2}\mathbf{e}_r
+$$
+
+である。同符号なら $\mathbf{e}_r$ の向き、すなわち斥力、異符号なら逆向きの引力になる。$\epsilon_0$ は真空の誘電率である。
+
+### クーロンの法則；重ね合わせ
+
+力を、電荷ごとにいちいち計算する代わりに、空間そのものの性質として表すのが**電場**である。点電荷 $q$ が位置 $\mathbf{r}$ に作る電場を、そこに置いた試験電荷 $q'$ が受ける力 $\mathbf{F}$ から
+
+$$
+\mathbf{E}=\frac{\mathbf{F}}{q'}
+$$
+
+と定義する。$q'$ を消去すれば、Coulomb の法則から直接
+
+$$
+\mathbf{E}(\mathbf{r})=\frac{1}{4\pi\epsilon_0}\frac{q}{r^2}\mathbf{e}_r
+$$
+
+が得られる。重要なのは、$\mathbf{E}$ は $q'$ によらないことである。$q'$ を2倍にすれば力も2倍になり、比は変わらない。
+
+多数の電荷がある場合は**重ね合わせの原理**が成り立つ。各電荷が単独で作る場をベクトルとして足し合わせる。
+
+$$
+\mathbf{E}=\sum_i \frac{1}{4\pi\epsilon_0}\frac{q_i}{r_i^2}\mathbf{e}_{r_i}
+$$
+
+電荷が連続的に分布する場合は、電荷密度 $\rho$ を使って和を積分に替える。体積要素 $dV'$ 内の電荷は $\rho\,dV'$ だから、
+
+$$
+\mathbf{E}(\mathbf{r})=\frac{1}{4\pi\epsilon_0}\int \frac{\rho(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|^2}\mathbf{e}_{r-r'}\,dV'
+$$
+
+となる。ここでプライム付きの量は電荷のある点（源点）、プライムなしは場を測る点（場点）を表す。
+
+### 電位
+
+電場が静電場であることの帰結として、試験電荷を閉じた経路に沿って1周させる仕事は0である。微小な変位 $d\mathbf{s}$ に対して場がする仕事は $q'\mathbf{E}\cdot d\mathbf{s}$ だから、
+
+$$
+\oint \mathbf{E}\cdot d\mathbf{s}=0
+$$
+
+が成り立つ。したがって2点 $a$、$b$ の間の線積分 $\int_a^b\mathbf{E}\cdot d\mathbf{s}$ は経路によらず、始点と終点だけで決まる。そこで**電気ポテンシャル（電位）** $\phi$ を
+
+$$
+\phi(b)-\phi(a)=-\int_a^b \mathbf{E}\cdot d\mathbf{s}
+$$
+
+で定義する。符号が負なのは、場に逆らって電荷を運ぶときに外からする仕事を正に数えるためである。基準点は任意で、普通は無限遠を $\phi=0$ と取る。
+
+点電荷については積分を実際に実行できる。$\mathbf{E}$ は動径方向を向き、大きさは $\dfrac{1}{4\pi\epsilon_0}\dfrac{q}{r^2}$ だから、動径方向の経路を選ぶと $\mathbf{E}\cdot d\mathbf{s}=E_r\,dr$ となり、
+
+$$
+\phi(r)-\phi(\infty)=-\int_\infty^r \frac{1}{4\pi\epsilon_0}\frac{q}{r'^2}\,dr'
+=-\frac{q}{4\pi\epsilon_0}\left[-\frac{1}{r'}\right]_\infty^r
+=\frac{1}{4\pi\epsilon_0}\frac{q}{r}
+$$
+
+ここで $\int r'^{-2}dr'=-r'^{-1}$ を使った。$\phi(\infty)=0$ と置けば
+
+$$
+\phi(r)=\frac{1}{4\pi\epsilon_0}\frac{q}{r}
+$$
+
+である。重ね合わせにより、連続分布については
+
+$$
+\phi(\mathbf{r})=\frac{1}{4\pi\epsilon_0}\int \frac{\rho(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,dV'
+$$
+
+となる。$\mathbf{E}$ の積分が $1/r^2$ 型でベクトルだったのに対し、$\phi$ の積分は $1/r$ 型でスカラーだから、計算ははるかに楽である。これがポテンシャルを導入する実用上の理由である。
+
+### $\mathbf{E}=-\nabla\psi$
+
+ポテンシャルから電場を戻すには微分する。$\phi$ の定義を、$b$ が $a$ から $x$ 方向へ $\Delta x$ だけ離れた場合に適用すると、経路を $x$ 方向の直線に取れるので
+
+$$
+\phi(x+\Delta x)-\phi(x)=-\int_x^{x+\Delta x}E_x\,dx\approx -E_x\Delta x
+$$
+
+近似は $\Delta x$ が小さいとき $E_x$ が区間内でほぼ一定とみなせることによる（誤差は $\Delta x$ の2次の量）。$\Delta x$ で割って $\Delta x\to0$ の極限を取ると
+
+$$
+E_x=-\frac{\partial\phi}{\partial x}
+$$
+
+同様に $E_y=-\partial\phi/\partial y$、$E_z=-\partial\phi/\partial z$ が得られ、まとめて
+
+$$
+\mathbf{E}=-\nabla\phi
+$$
+
+と書ける。負号は、電場がポテンシャルの増える向きではなく減る向きを向くことを表す。
+
+逆に $\oint\mathbf{E}\cdot d\mathbf{s}=0$ は、$\mathbf{E}$ の回転（rotation）が0であること、$\nabla\times\mathbf{E}=0$ と同等である。静電場は**渦なしの場**である。
+
+### 電束
+
+閉曲面 $S$ を貫く電場の**流束（flux）**を
+
+$$
+\Phi=\int_S \mathbf{E}\cdot\mathbf{n}\,dA
+$$
+
+と定義する。$\mathbf{n}$ は外向きの単位法線である。
+
+まず原点にある点電荷 $q$ と、それを囲む半径 $r$ の球面を考える。球面上では $\mathbf{E}$ は法線と平行で大きさは一定だから、
+
+$$
+\Phi=E\cdot 4\pi r^2=\frac{1}{4\pi\epsilon_0}\frac{q}{r^2}\cdot 4\pi r^2=\frac{q}{\epsilon_0}
+$$
+
+となり、$r$ が消える。一般の閉曲面については、面要素 $dA$ を貫く流束は立体角で書き直せる。法線と動径方向のなす角を $\theta$ とすると、$\mathbf{E}\cdot\mathbf{n}\,dA=E\cos\theta\,dA$ であり、$\cos\theta\,dA$ は面要素を動径方向に射影した面積、すなわち $r^2\,d\Omega$（$d\Omega$ は立体角）に等しい。したがって
+
+$$
+\mathbf{E}\cdot\mathbf{n}\,dA=\frac{1}{4\pi\epsilon_0}\frac{q}{r^2}\cdot r^2\,d\Omega=\frac{q}{4\pi\epsilon_0}\,d\Omega
+$$
+
+閉曲面全体では立体角の合計は $4\pi$ だから、電荷が内部にある場合は $\Phi=q/\epsilon_0$、電荷が外部にある場合は入る流束と出る流束が打ち消して $\Phi=0$ になる。
+
+### ガウスの法則；$\mathbf{E}$のdiv
+
+重ね合わせにより、内部に複数の電荷がある場合へ一般化できる。これが **Gauss の法則** である。
+
+**任意の閉曲面を出ていく電場の流束は、内部の全電荷を $\epsilon_0$ で割ったものに等しい。**
+
+$$
+\int_S \mathbf{E}\cdot\mathbf{n}\,dA=\frac{Q_{\text{内}}}{\epsilon_0}
+$$
+
+これを微分形にする。発散定理により左辺は体積積分に直せる。
+
+$$
+\int_S \mathbf{E}\cdot\mathbf{n}\,dA=\int_V \nabla\cdot\mathbf{E}\,dV
+$$
+
+右辺は $Q_{\text{内}}=\int_V\rho\,dV$ だから、
+
+$$
+\int_V \nabla\cdot\mathbf{E}\,dV=\int_V\frac{\rho}{\epsilon_0}\,dV
+$$
+
+この等式は任意の体積 $V$ について成り立つので、被積分関数同士が等しくなければならない。$V$ を1点のまわりに縮めれば厳密になる。
+
+$$
+\nabla\cdot\mathbf{E}=\frac{\rho}{\epsilon_0}
+$$
+
+静電気学の基本方程式は、この式と $\nabla\times\mathbf{E}=0$（すなわち $\mathbf{E}=-\nabla\phi$）の2つに集約される。
+
+### 球状電荷の場
+
+Gauss の法則の最初の応用として、半径 $R$ の球に一様に分布した全電荷 $Q$ の場を求める。対称性から $\mathbf{E}$ は動径方向を向き、大きさは $r$ だけの関数である。半径 $r$ の同心球面を Gauss 面に取ると、流束は $E(r)\cdot4\pi r^2$ である。
+
+$r>R$ のとき内部の電荷は $Q$ 全部だから、
+
+$$
+E(r)\cdot4\pi r^2=\frac{Q}{\epsilon_0}\quad\Longrightarrow\quad E(r)=\frac{1}{4\pi\epsilon_0}\frac{Q}{r^2}
+$$
+
+で、球の外では点電荷の場と区別がつかない。
+
+$r<R$ のとき内部の電荷は体積比の分だけ、$Q_{\text{内}}=Q\cdot\dfrac{r^3}{R^3}$ だから、
+
+$$
+E(r)\cdot4\pi r^2=\frac{Q}{\epsilon_0}\frac{r^3}{R^3}\quad\Longrightarrow\quad E(r)=\frac{1}{4\pi\epsilon_0}\frac{Qr}{R^3}
+$$
+
+となり、内部では場は $r$ に比例して増える。第6章では同じ計算を電荷密度 $\rho$ を使ってやり直し、ポテンシャルまで求める。
+
+### 力線；等電位面
+
+電場を目に見える形にする道具が2つある。**力線（電場線）**は、各点で $\mathbf{E}$ の方向を向く曲線で、その密度が場の強さを表すように描く。**等ポテンシャル面**は $\phi$ が一定の面である。
+
+両者は直交する。等ポテンシャル面に沿った微小変位 $d\mathbf{s}$ については $d\phi=0$ であり、$d\phi=-\mathbf{E}\cdot d\mathbf{s}$ だから $\mathbf{E}\cdot d\mathbf{s}=0$、すなわち $\mathbf{E}$ は面に垂直である。
+
+力線は電荷のない場所では始まったり終わったりしない。これは Gauss の法則の図形的な言い換えで、電荷のない領域を囲む閉曲面では流束が0、つまり入る力線と出る力線の数が等しいからである。力線が途中で切れるのは、正電荷（始点）と負電荷（終点）のところだけである。
+

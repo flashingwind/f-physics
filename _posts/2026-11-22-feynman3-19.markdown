@@ -1,0 +1,140 @@
+---
+layout: post
+title: ファインマン物理学 (3)電磁気学 第19章
+date: '2026-11-22 05:15:00 +0900'
+categories: feynman
+---
+<!-- # ファインマン物理学 (3)電磁気学 -->
+
+## 第19章 真空中のマクスウェル方程式の解
+
+
+### 真空中の波；平面波
+
+電荷も電流もない自由空間では、Maxwell方程式は
+
+$$
+\nabla\cdot\mathbf{E}=0,\qquad \nabla\cdot\mathbf{B}=0,\qquad
+\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t},\qquad
+\nabla\times\mathbf{B}=\mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t}
+$$
+
+である。ここから波動方程式を導く。Faradayの法則の回転を取り、
+
+$$
+\nabla\times(\nabla\times\mathbf{E})=-\frac{\partial}{\partial t}(\nabla\times\mathbf{B})
+$$
+
+右辺にAmpère–Maxwellの法則を代入し、左辺にベクトル恒等式$\nabla\times(\nabla\times\mathbf{E})=\nabla(\nabla\cdot\mathbf{E})-\nabla^2\mathbf{E}$を使い、$\nabla\cdot\mathbf{E}=0$を入れると、
+
+$$
+-\nabla^2\mathbf{E}=-\mu_0\epsilon_0\frac{\partial^2\mathbf{E}}{\partial t^2}
+\quad\Longrightarrow\quad
+\nabla^2\mathbf{E}-\frac{1}{c^2}\frac{\partial^2\mathbf{E}}{\partial t^2}=0,
+\qquad c=\frac{1}{\sqrt{\mu_0\epsilon_0}}
+$$
+
+$\mathbf{B}$についても、$\nabla\times\mathbf{B}$の回転を取って同じ手順で、
+
+$$
+\nabla^2\mathbf{B}-\frac{1}{c^2}\frac{\partial^2\mathbf{B}}{\partial t^2}=0
+$$
+
+が得られる。場の各成分が速さ$c$で伝わる波であることが、方程式だけから出た。
+
+最も簡単な解は**平面波**である。$z$方向へ進む波を
+
+$$
+\mathbf{E}=\mathbf{E}_0\cos(kz-\omega t)
+$$
+
+と置く。波動方程式に代入すると、$\nabla^2\mathbf{E}=-k^2\mathbf{E}$、$\dfrac{\partial^2\mathbf{E}}{\partial t^2}=-\omega^2\mathbf{E}$だから、
+
+$$
+-k^2+\frac{\omega^2}{c^2}=0\quad\Longrightarrow\quad \omega=ck
+$$
+
+という分散関係が条件になる。発散の条件$\nabla\cdot\mathbf{E}=0$は、$\mathbf{E}_0$の$z$成分についての微分が$\cos$の偏微分から出ることにより、
+
+$$
+\nabla\cdot\mathbf{E}=-kE_{0z}\sin(kz-\omega t)=0
+\quad\Longrightarrow\quad E_{0z}=0
+$$
+
+を要求する。つまり電場は進行方向に**垂直**(横波)である。磁場はFaradayの法則から決まる。$\mathbf{E}=E_0\cos(kz-\omega t)\,\hat{\mathbf{x}}$とすると、
+
+$$
+\nabla\times\mathbf{E}
+=\frac{\partial E_x}{\partial z}\,\hat{\mathbf{y}}\times(-1)
+=E_0 k\sin(kz-\omega t)\,\hat{\mathbf{y}}
+=-\frac{\partial\mathbf{B}}{\partial t}
+$$
+
+を時間で積分して($\omega=ck$を使う)、
+
+$$
+\mathbf{B}=\frac{E_0}{c}\cos(kz-\omega t)\,\hat{\mathbf{y}}
+$$
+
+したがって$\mathbf{B}$も横波で、$\mathbf{E}$と**同位相**、大きさは$B=E/c$、向きは$\mathbf{E}$と進行方向の両方に垂直である。一般にはベクトルで
+
+$$
+\mathbf{B}=\frac{1}{c}\,\hat{\mathbf{k}}\times\mathbf{E}
+$$
+
+と書ける。エネルギーの流れはPoyntingベクトル$\mathbf{S}=\dfrac{1}{\mu_0}\mathbf{E}\times\mathbf{B}$で、その大きさはエネルギー密度$u=\epsilon_0 E^2$(電場と磁場が半分ずつ担う)を用いて$S=uc$、すなわちエネルギーは場と一緒に速さ$c$で運ばれる。
+
+偏光は、$\mathbf{E}_0$を進行方向に垂直な面内の2成分に分けることで表される。2成分の位相が揃えば直線偏光、$90^\circ$ずれれば円偏光(楕円偏光)になる。複素表示$\mathbf{E}=\mathrm{Re}\left[\mathbf{E}_0 e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)}\right]$を使うと微分が$ik$、$-i\omega$の掛け算に置き換わり、上の条件は$\mathbf{k}\cdot\mathbf{E}_0=0$、$\mathbf{B}_0=\dfrac{\mathbf{k}\times\mathbf{E}_0}{\omega}$と代数的に書ける。
+
+### 3次元の波動
+
+平面波を一般化する。任意の方向$\hat{\mathbf{k}}$へ進む波
+
+$$
+\mathbf{E}=\mathbf{E}_0\cos(\mathbf{k}\cdot\mathbf{r}-\omega t),\qquad |\mathbf{k}|=\frac{\omega}{c}
+$$
+
+も解であり、条件はやはり$\mathbf{k}\cdot\mathbf{E}_0=0$と$\mathbf{B}_0=\dfrac{\mathbf{k}\times\mathbf{E}_0}{\omega}$である。線形方程式だから、異なる$\mathbf{k}$、$\omega$、偏光を持つ平面波の**重ね合わせ**も解である。したがって自由空間の一般の場は、平面波の重ね合わせ(Fourier分解)として表せる。波束はその例で、群速度も$c$になる(真空では分散がない)。
+
+逆に、1次元で導いたように、波動方程式の解は$t-r/c$や$t+r/c$といった組み合わせの関数で書けるものを含む。3次元ではこれが次節の球面波につながる。原典の要点は、方程式が許す波は平面波だけではなく、「波面」の形は源の置き方で決まる、ということである。
+
+### 科学的想像
+
+この節は計算ではなく、電磁波という対象をどう想像するかについての原典の考察である。場は、空間に実在する量として、数式の助けを借りて想像するほかない。波の描像として身近な水面の波や音波のアナロジーは助けになるが、電磁波は媒質の変位ではなく、$\mathbf{E}$と$\mathbf{B}$そのものの振動であり、真空中を進む。原典は、正確な数学的記述こそが不正確な機械的モデルより確かな想像の足場になる、という立場を示す。数式で表された波が「実在する」と考えることが、干渉や輻射圧のような検証可能な帰結を生む。
+
+### 球面波
+
+点状の源から出る波は球面波になる。球対称なスカラー波$\psi(r,t)$について波動方程式を書く。球座標のラプラシアンの動径部分は
+
+$$
+\nabla^2\psi=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\psi}{\partial r}\right)
+$$
+
+である。ここで$\psi=\dfrac{u(r,t)}{r}$と置いて中身を全部展開する。
+
+$$
+\frac{\partial\psi}{\partial r}=\frac{1}{r}\frac{\partial u}{\partial r}-\frac{u}{r^2},
+\qquad
+r^2\frac{\partial\psi}{\partial r}=r\frac{\partial u}{\partial r}-u
+$$
+
+$$
+\frac{\partial}{\partial r}\left(r\frac{\partial u}{\partial r}-u\right)
+=r\frac{\partial^2 u}{\partial r^2}+\frac{\partial u}{\partial r}-\frac{\partial u}{\partial r}
+=r\frac{\partial^2 u}{\partial r^2}
+$$
+
+よって$\nabla^2\psi=\dfrac{1}{r}\dfrac{\partial^2 u}{\partial r^2}$。時間微分側は$\dfrac{1}{c^2}\dfrac{\partial^2\psi}{\partial t^2}=\dfrac{1}{rc^2}\dfrac{\partial^2 u}{\partial t^2}$だから、波動方程式は$u$についての1次元波動方程式
+
+$$
+\frac{\partial^2 u}{\partial r^2}-\frac{1}{c^2}\frac{\partial^2 u}{\partial t^2}=0
+$$
+
+に帰着する。その一般解は$u=f(t-r/c)+g(t+r/c)$で、外向きの波だけを取れば、
+
+$$
+\psi=\frac{f(t-r/c)}{r}
+$$
+
+振幅が$1/r$で減るのは、エネルギーの流束密度が$|\psi|^2\propto 1/r^2$となり、球面の面積$4\pi r^2$と掛けて全エネルギーの流れが$r$によらず一定になるためである。電磁波でも、横波であることと偏光の向きを除けば、遠方での場の大きさは$1/r$で減衰する球面波が基本形になる。ただし原点$r=0$ではこの解は発散し、源(電荷・電流)を置く必要がある。それが次章の主題である。
+
