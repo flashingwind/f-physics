@@ -258,16 +258,16 @@ $$
 曲率半径の最も小さい場所で場が最も高くなることは、導線で結んだ大きな球と小さな球の組み合わせで見られる。導線は2つの球を同電位に保つためのもので、外の場への影響は小さいとして無視する。大きな球は半径 $a$、電荷 $Q$ を持ち、その電位はおよそ
 
 $$
-\psi_1=\frac{1}{4\pi\epsilon_0}\frac{Q}{a}
+\phi_1=\frac{1}{4\pi\epsilon_0}\frac{Q}{a}
 $$
 
 小さな球は半径 $b$、電荷 $q$ を持ち、その電位はおよそ
 
 $$
-\psi_2=\frac{1}{4\pi\epsilon_0}\frac{q}{b}
+\phi_2=\frac{1}{4\pi\epsilon_0}\frac{q}{b}
 $$
 
-である。導線で結ばれているから $\psi_1=\psi_2$ で、
+である。導線で結ばれているから $\phi_1=\phi_2$ で、
 
 $$
 \frac{Q}{a}=\frac{q}{b}\quad\Longrightarrow\quad \frac{Q}{q}=\frac{a}{b}
